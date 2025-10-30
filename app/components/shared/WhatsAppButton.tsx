@@ -9,23 +9,27 @@ import type { Variant, Model } from '@/app/types';
 interface WhatsAppButtonProps {
   variant?: Variant;
   model?: Model;
-  placement: string;
+  placement?: string;
   size?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
   isPrimary?: boolean;
   showText?: boolean;
   customText?: string;
+  message?: string;
+  children?: React.ReactNode;
 }
 
 export default function WhatsAppButton({
   variant,
   model,
-  placement,
+  placement = 'default',
   size = 'medium',
   fullWidth = false,
   isPrimary = false,
   showText = false,
   customText = 'Order Now',
+  message,
+  children,
 }: WhatsAppButtonProps) {
   const theme = useTheme();
   const phone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '971501234567'; // Placeholder
@@ -38,12 +42,17 @@ export default function WhatsAppButton({
       model,
       utm_source,
       utm_campaign,
+      message,
     });
 
     trackWhatsAppClick(placement, variant, model, utm_source, utm_campaign);
 
     window.open(url, '_blank');
   };
+
+  // Determine button content
+  const buttonContent = children || (showText && customText);
+  const hasContent = !!buttonContent;
 
   return (
     <Button
@@ -55,7 +64,7 @@ export default function WhatsAppButton({
       aria-label="Order on WhatsApp"
       startIcon={<WhatsAppIcon />}
       sx={{
-        minWidth: showText ? 'auto' : (size === 'large' ? 64 : size === 'medium' ? 48 : 40),
+        minWidth: hasContent ? 'auto' : (size === 'large' ? 64 : size === 'medium' ? 48 : 40),
         boxShadow: isPrimary ? theme.tokens.shadows.glowMd : undefined,
         transition: `all ${theme.tokens.transitions.normal} ${theme.tokens.transitions.easing}`,
         '&:hover': {
@@ -63,7 +72,7 @@ export default function WhatsAppButton({
         },
       }}
     >
-      {showText && customText}
+      {buttonContent}
     </Button>
   );
 }

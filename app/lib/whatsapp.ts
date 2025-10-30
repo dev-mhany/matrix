@@ -4,23 +4,26 @@ export function generateWhatsAppURL(
   phone: string,
   params: WhatsAppParams
 ): string {
-  let message = `Hi Matrix! I'm interested in AeroCovers V2 for my Tesla.`;
+  // Use custom message if provided, otherwise use default template
+  let message = params.message || `Hi Matrix! I'm interested in AeroCovers V2 for my Tesla.`;
 
-  // Only add details if they are actually provided
-  if (params.variant) {
-    message += `\n\nVariant: ${params.variant}`;
-  }
-  
-  if (params.model) {
-    message += `\nModel: ${params.model}`;
-  }
-  
-  if (params.city) {
-    message += `\nCity: ${params.city}`;
-  }
+  // Only add details if they are actually provided and no custom message
+  if (!params.message) {
+    if (params.variant) {
+      message += `\n\nVariant: ${params.variant}`;
+    }
 
-  // Add a friendly closing
-  message += `\n\nPlease share more details and pricing. Thank you!`;
+    if (params.model) {
+      message += `\nModel: ${params.model}`;
+    }
+
+    if (params.city) {
+      message += `\nCity: ${params.city}`;
+    }
+
+    // Add a friendly closing
+    message += `\n\nPlease share more details and pricing. Thank you!`;
+  }
 
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }

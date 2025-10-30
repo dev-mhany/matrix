@@ -22,6 +22,7 @@ export interface WhatsAppParams {
   city?: string;
   utm_source?: string;
   utm_campaign?: string;
+  message?: string;
 }
 
 export interface ProductVariant {

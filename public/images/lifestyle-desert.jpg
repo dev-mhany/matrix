@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="desert" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB347;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect fill="url(#desert)" width="800" height="600"/>
+  <ellipse cx="400" cy="350" rx="600" ry="200" fill="#FF8C42" opacity="0.5"/>
+  <ellipse cx="200" cy="400" rx="400" ry="150" fill="#FFB347" opacity="0.3"/>
+  <rect fill="#1A1D23" y="450" width="800" height="10"/>
+  <text x="400" y="500" font-family="Arial" font-size="36" fill="#FFFFFF" text-anchor="middle" font-weight="bold">Desert Highway</text>
+</svg>
+

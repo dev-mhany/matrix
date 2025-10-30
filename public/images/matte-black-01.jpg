@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect fill="#0B0D10" width="800" height="600"/>
+  <circle cx="400" cy="300" r="180" fill="#1A1D23" stroke="#2A2D33" stroke-width="3"/>
+  <text x="400" y="520" font-family="Arial" font-size="32" fill="#B0B8C4" text-anchor="middle">Matte Black</text>
+</svg>
+

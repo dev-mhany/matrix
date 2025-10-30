@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect fill="#F5F5F5" width="800" height="600"/>
+  <circle cx="400" cy="300" r="180" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="3"/>
+  <text x="400" y="520" font-family="Arial" font-size="32" fill="#666666" text-anchor="middle">Gloss White</text>
+</svg>
+

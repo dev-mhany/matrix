@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect fill="#1A1D23" width="800" height="600"/>
+  <rect fill="#2A2D33" y="300" width="800" height="300"/>
+  <rect fill="#3A3D43" x="100" y="150" width="80" height="150"/>
+  <rect fill="#4A4D53" x="250" y="100" width="80" height="200"/>
+  <rect fill="#3A3D43" x="400" y="180" width="80" height="120"/>
+  <rect fill="#4A4D53" x="550" y="120" width="80" height="180"/>
+  <text x="400" y="500" font-family="Arial" font-size="36" fill="#1EA7FD" text-anchor="middle" font-weight="bold">Dubai Skyline</text>
+</svg>
+

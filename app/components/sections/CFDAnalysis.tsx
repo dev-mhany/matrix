@@ -1,28 +1,28 @@
-'use client';
+'use client'
 
-import { Box, Container, Typography, Grid, Card, CardMedia, Stack } from '@mui/material';
-import { useLanguage } from '../LanguageContext';
+import { Box, Container, Typography, Grid, Card, CardMedia, Stack } from '@mui/material'
+import { useLanguage } from '../LanguageContext'
 
 export default function CFDAnalysis() {
-  const { locale } = useLanguage();
+  const { locale } = useLanguage()
 
   return (
-    <Box 
-      id="cfd-analysis"
-      sx={{ 
-        py: { xs: 8, md: 12 }, 
+    <Box
+      id='cfd-analysis'
+      sx={{
+        py: { xs: 8, md: 12 },
         backgroundColor: 'background.default',
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'hidden'
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         {/* Section Title */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography 
-            variant="overline" 
-            sx={{ 
-              color: 'primary.main', 
+          <Typography
+            variant='overline'
+            sx={{
+              color: 'primary.main',
               fontWeight: 700,
               letterSpacing: 2,
               mb: 2,
@@ -31,18 +31,17 @@ export default function CFDAnalysis() {
           >
             {locale === 'en' ? 'PROVEN BY SCIENCE' : 'مثبت علميًا'}
           </Typography>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant='h2' gutterBottom>
             {locale === 'en' ? 'CFD-Proven Efficiency' : 'كفاءة مثبتة بالـ CFD'}
           </Typography>
-          <Typography 
-            variant="h6" 
-            color="text.secondary" 
+          <Typography
+            variant='h6'
+            color='text.secondary'
             sx={{ maxWidth: 800, mx: 'auto' }}
           >
-            {locale === 'en' 
+            {locale === 'en'
               ? 'Computational Fluid Dynamics analysis proves HALODISC 2 reduces drag by up to 10% in high-speed crosswinds'
-              : 'تحليل ديناميكا الموائع الحاسوبية يثبت أن HALODISC 2 يقلل المقاومة بنسبة تصل إلى 10% في الرياح المتقاطعة عالية السرعة'
-            }
+              : 'تحليل ديناميكا الموائع الحاسوبية يثبت أن HALODISC 2 يقلل المقاومة بنسبة تصل إلى 10% في الرياح المتقاطعة عالية السرعة'}
           </Typography>
         </Box>
 
@@ -53,17 +52,17 @@ export default function CFDAnalysis() {
             borderRadius: 4,
             overflow: 'hidden',
             mb: 6,
-            backgroundColor: 'background.paper',
+            backgroundColor: 'background.paper'
           }}
         >
           <CardMedia
-            component="img"
-            image="/images/technical/cfd-analysis-full.jpg"
-            alt="CFD Analysis Comparison"
+            component='img'
+            image='/images/technical/cfd-analysis-full.jpg'
+            alt='CFD Analysis Comparison'
             sx={{
               width: '100%',
               height: 'auto',
-              display: 'block',
+              display: 'block'
             }}
           />
         </Card>
@@ -72,7 +71,7 @@ export default function CFDAnalysis() {
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             <Card
-              className="hover-lift"
+              className='hover-lift'
               elevation={2}
               sx={{
                 p: 4,
@@ -80,21 +79,20 @@ export default function CFDAnalysis() {
                 borderRadius: 3,
                 backgroundColor: 'background.paper',
                 border: '2px solid',
-                borderColor: 'primary.main',
+                borderColor: 'primary.main'
               }}
             >
               <Stack spacing={2}>
-                <Typography variant="h4" color="primary.main">
+                <Typography variant='h4' color='primary.main'>
                   🌪️
                 </Typography>
-                <Typography variant="h5" fontWeight={700}>
+                <Typography variant='h5' fontWeight={700}>
                   {locale === 'en' ? 'Calms Turbulence' : 'يهدئ الاضطراب'}
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant='body1' color='text.secondary'>
                   {locale === 'en'
                     ? 'Smooth, closed face design reduces wheel-well turbulence, creating cleaner airflow around the vehicle'
-                    : 'تصميم سطح مغلق وسلس يقلل من اضطراب العجلات، مما يخلق تدفق هواء أنظف حول السيارة'
-                  }
+                    : 'تصميم سطح مغلق وسلس يقلل من اضطراب العجلات، مما يخلق تدفق هواء أنظف حول السيارة'}
                 </Typography>
               </Stack>
             </Card>
@@ -102,7 +100,7 @@ export default function CFDAnalysis() {
 
           <Grid item xs={12} md={4}>
             <Card
-              className="hover-lift"
+              className='hover-lift'
               elevation={2}
               sx={{
                 p: 4,
@@ -110,21 +108,20 @@ export default function CFDAnalysis() {
                 borderRadius: 3,
                 backgroundColor: 'background.paper',
                 border: '2px solid',
-                borderColor: 'primary.main',
+                borderColor: 'primary.main'
               }}
             >
               <Stack spacing={2}>
-                <Typography variant="h4" color="primary.main">
+                <Typography variant='h4' color='primary.main'>
                   💨
                 </Typography>
-                <Typography variant="h5" fontWeight={700}>
+                <Typography variant='h5' fontWeight={700}>
                   {locale === 'en' ? 'Lower Drag' : 'مقاومة أقل'}
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant='body1' color='text.secondary'>
                   {locale === 'en'
                     ? 'Tighter rear wake reduces overall aerodynamic drag, improving efficiency at highway speeds'
-                    : 'استيقاظ خلفي أضيق يقلل من المقاومة الديناميكية الهوائية الإجمالية، مما يحسن الكفاءة على سرعات الطرق السريعة'
-                  }
+                    : 'استيقاظ خلفي أضيق يقلل من المقاومة الديناميكية الهوائية الإجمالية، مما يحسن الكفاءة على سرعات الطرق السريعة'}
                 </Typography>
               </Stack>
             </Card>
@@ -132,7 +129,7 @@ export default function CFDAnalysis() {
 
           <Grid item xs={12} md={4}>
             <Card
-              className="hover-lift"
+              className='hover-lift'
               elevation={2}
               sx={{
                 p: 4,
@@ -140,21 +137,20 @@ export default function CFDAnalysis() {
                 borderRadius: 3,
                 backgroundColor: 'background.paper',
                 border: '2px solid',
-                borderColor: 'primary.main',
+                borderColor: 'primary.main'
               }}
             >
               <Stack spacing={2}>
-                <Typography variant="h4" color="primary.main">
+                <Typography variant='h4' color='primary.main'>
                   ⚡
                 </Typography>
-                <Typography variant="h5" fontWeight={700}>
+                <Typography variant='h5' fontWeight={700}>
                   {locale === 'en' ? 'Up to 10% Boost' : 'زيادة تصل إلى 10%'}
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant='body1' color='text.secondary'>
                   {locale === 'en'
                     ? 'In specific high-speed crosswind scenarios, experience range improvements and enhanced stability'
-                    : 'في سيناريوهات الرياح المتقاطعة عالية السرعة المحددة، استمتع بتحسينات المدى واستقرار محسّن'
-                  }
+                    : 'في سيناريوهات الرياح المتقاطعة عالية السرعة المحددة، استمتع بتحسينات المدى واستقرار محسّن'}
                 </Typography>
               </Stack>
             </Card>
@@ -162,30 +158,24 @@ export default function CFDAnalysis() {
         </Grid>
 
         {/* Disclaimer */}
-        <Box 
-          sx={{ 
-            mt: 6, 
-            p: 3, 
-            borderRadius: 2, 
+        <Box
+          sx={{
+            mt: 6,
+            p: 3,
+            borderRadius: 2,
             backgroundColor: 'rgba(255, 255, 255, 0.05)',
             borderLeft: '4px solid',
-            borderColor: 'primary.main',
+            borderColor: 'primary.main'
           }}
         >
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant='body2' color='text.secondary'>
             <strong>{locale === 'en' ? 'Note:' : 'ملاحظة:'}</strong>{' '}
             {locale === 'en'
               ? 'Results vary based on speed, yaw angle, tire type, and road conditions. CFD analysis conducted in controlled simulation environment.'
-              : 'تختلف النتائج بناءً على السرعة وزاوية الانعراج ونوع الإطار وظروف الطريق. تم إجراء تحليل CFD في بيئة محاكاة مُتحكم بها.'
-            }
+              : 'تختلف النتائج بناءً على السرعة وزاوية الانعراج ونوع الإطار وظروف الطريق. تم إجراء تحليل CFD في بيئة محاكاة مُتحكم بها.'}
           </Typography>
         </Box>
       </Container>
     </Box>
-  );
+  )
 }
-
-
-
-
-

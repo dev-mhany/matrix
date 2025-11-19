@@ -1,40 +1,44 @@
-'use client';
+'use client'
 
-import { Box, Container, Typography, Grid, Card, useTheme } from '@mui/material';
-import Image from 'next/image';
-import WhatsAppButton from '../shared/WhatsAppButton';
-import { useLanguage } from '../LanguageContext';
-import type { Category } from '@/app/types';
+import { Box, Container, Typography, Grid, Card, useTheme } from '@mui/material'
+import Image from 'next/image'
+import WhatsAppButton from '../shared/WhatsAppButton'
+import { useLanguage } from '../LanguageContext'
+import type { Category } from '@/app/types'
 
 interface CategoryLifestyleProps {
-  title: { en: string; ar: string };
-  subtitle: { en: string; ar: string };
-  category: Category;
+  title: { en: string; ar: string }
+  subtitle: { en: string; ar: string }
+  category: Category
   images: Array<{
-    src: string;
-    title: { en: string; ar: string };
-    description: { en: string; ar: string };
-  }>;
+    src: string
+    title: { en: string; ar: string }
+    description: { en: string; ar: string }
+  }>
 }
 
 export default function CategoryLifestyle({
   title,
   subtitle,
   category,
-  images,
+  images
 }: CategoryLifestyleProps) {
-  const { locale } = useLanguage();
-  const theme = useTheme();
+  const { locale } = useLanguage()
+  const theme = useTheme()
 
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, backgroundColor: 'background.paper' }}>
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         {/* Title */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant='h2' gutterBottom>
             {title[locale]}
           </Typography>
-          <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 700, mx: 'auto' }}>
+          <Typography
+            variant='h6'
+            color='text.secondary'
+            sx={{ maxWidth: 700, mx: 'auto' }}
+          >
             {subtitle[locale]}
           </Typography>
         </Box>
@@ -49,7 +53,7 @@ export default function CategoryLifestyle({
                   borderRadius: 3,
                   overflow: 'hidden',
                   position: 'relative',
-                  height: 400,
+                  height: 400
                 }}
               >
                 <Image
@@ -57,7 +61,7 @@ export default function CategoryLifestyle({
                   alt={img.title[locale]}
                   fill
                   style={{ objectFit: 'cover' }}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                 />
                 <Box
                   sx={{
@@ -66,13 +70,13 @@ export default function CategoryLifestyle({
                     left: 0,
                     right: 0,
                     background: theme.tokens.gradients.overlay,
-                    p: 3,
+                    p: 3
                   }}
                 >
-                  <Typography variant="h5" fontWeight={700}>
+                  <Typography variant='h5' fontWeight={700}>
                     {img.title[locale]}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant='body2' color='text.secondary'>
                     {img.description[locale]}
                   </Typography>
                 </Box>
@@ -85,8 +89,8 @@ export default function CategoryLifestyle({
         <Box sx={{ textAlign: 'center', mt: 5 }}>
           <WhatsAppButton
             category={category}
-            placement="lifestyle"
-            size="large"
+            placement='lifestyle'
+            size='large'
             isPrimary
             showText
             customText={locale === 'en' ? 'Order Now' : 'اطلب الآن'}
@@ -94,6 +98,5 @@ export default function CategoryLifestyle({
         </Box>
       </Container>
     </Box>
-  );
+  )
 }
-

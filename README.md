@@ -5,6 +5,7 @@ A premium, production-ready landing page for Matrix Tesla wheel covers with What
 ## 🚀 Features
 
 ### Core Features
+
 - **11 Responsive Sections**: Hero, Product Showcase, Lifestyle, Features, Video, Pricing, Testimonials, FAQ, Final CTA, Footer
 - **6 Complete Pages**: About, Contact, Shipping, Returns, Terms, Privacy (all bilingual)
 - **WhatsApp Integration**: Icon-only buttons that open WhatsApp with prefilled order details (variant, model, UTM params)
@@ -21,6 +22,7 @@ A premium, production-ready landing page for Matrix Tesla wheel covers with What
 ### New Improvements
 
 #### 🎨 Subtle CSS Animations
+
 - **Entrance animations**: Fade-in, slide-in, scale-in effects
 - **Hover effects**: Card lifts, glow effects, scale transforms
 - **Continuous animations**: Pulse, float, gradient animations
@@ -28,18 +30,21 @@ A premium, production-ready landing page for Matrix Tesla wheel covers with What
 - **15+ animation classes** available for use across components
 
 #### 🖼️ Professional Placeholder Images
+
 - High-quality placeholder images from placehold.co
 - Color-coordinated for each variant (Matte Black, Gloss White, Carbon Fiber)
 - Proper dimensions showing actual layout
 - Easy to replace with real product photos
 
 #### 🎯 Icon-Only WhatsApp Buttons
+
 - Clean, minimal design with just WhatsApp icon
 - Maintains all tracking and functionality
 - Better visual hierarchy
 - Consistent sizing across all placements
 
 #### 📄 Complete Footer Pages
+
 - About Us - Company story and values
 - Contact - Form with contact information
 - Shipping Policy - UAE delivery details
@@ -103,25 +108,26 @@ E:\matrix\
 ### Installation
 
 1. **Install dependencies**:
+
    ```bash
    yarn install
    ```
 
 2. **Configure environment variables**:
-   
+
    Update `.env.local` with your values:
-   
+
    ```env
    # Google Tag Manager ID (for analytics tracking)
    NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
-   
+
    # WhatsApp Business Phone Number (E.164 format without +)
    # Example: 971501234567 for UAE number +971 50 123 4567
    NEXT_PUBLIC_WHATSAPP_PHONE=971501234567
    ```
 
 3. **Replace placeholder images**:
-   
+
    Replace placeholder URLs in `app/lib/content.ts` with actual product photos:
    - Matte Black images (3 photos)
    - Gloss White images (3 photos)
@@ -129,10 +135,11 @@ E:\matrix\
    - Lifestyle images (Dubai, Desert)
 
 4. **Start development server**:
+
    ```bash
    yarn dev
    ```
-   
+
    Open [http://localhost:3000](http://localhost:3000)
 
 ## 🧪 Testing & Validation
@@ -163,42 +170,45 @@ yarn lint && yarn build
 
 ## 🌐 Routes
 
-| Route | Description |
-|-------|-------------|
-| `/` | Main landing page with all 11 sections |
-| `/about` | About Matrix - company story and values |
-| `/contact` | Contact form and information |
-| `/shipping` | Shipping policy and delivery times |
-| `/returns` | Returns and refunds policy |
-| `/terms` | Terms of service |
-| `/privacy` | Privacy policy and data handling |
+| Route       | Description                             |
+| ----------- | --------------------------------------- |
+| `/`         | Main landing page with all 11 sections  |
+| `/about`    | About Matrix - company story and values |
+| `/contact`  | Contact form and information            |
+| `/shipping` | Shipping policy and delivery times      |
+| `/returns`  | Returns and refunds policy              |
+| `/terms`    | Terms of service                        |
+| `/privacy`  | Privacy policy and data handling        |
 
 ## 🎨 Animation Classes
 
 Use these classes in your components for consistent animations:
 
 ### Entrance Animations
+
 ```tsx
-className="animate-fade-in"       // Basic fade in
-className="animate-fade-in-up"    // Fade in with upward motion
-className="animate-slide-in-left" // Slide from left
-className="animate-slide-in-right"// Slide from right
-className="animate-scale-in"      // Zoom in
+className = 'animate-fade-in' // Basic fade in
+className = 'animate-fade-in-up' // Fade in with upward motion
+className = 'animate-slide-in-left' // Slide from left
+className = 'animate-slide-in-right' // Slide from right
+className = 'animate-scale-in' // Zoom in
 ```
 
 ### Hover Effects
+
 ```tsx
-className="card-hover"    // Card lift + shadow
-className="hover-lift"    // Subtle lift
-className="hover-glow"    // Blue glow shadow
-className="hover-scale"   // Scale to 105%
+className = 'card-hover' // Card lift + shadow
+className = 'hover-lift' // Subtle lift
+className = 'hover-glow' // Blue glow shadow
+className = 'hover-scale' // Scale to 105%
 ```
 
 ### Continuous Effects
+
 ```tsx
-className="animate-pulse-subtle" // Gentle pulse
-className="animate-float"        // Floating motion
-className="animate-gradient"     // Gradient animation
+className = 'animate-pulse-subtle' // Gentle pulse
+className = 'animate-float' // Floating motion
+className = 'animate-gradient' // Gradient animation
 ```
 
 ## 📱 WhatsApp Integration
@@ -211,6 +221,7 @@ All WhatsApp buttons generate URLs with prefilled messages including:
 - **Placement**: CTA location for tracking
 
 Example WhatsApp message:
+
 ```
 Hi Matrix! I'd like to order AeroCovers V2.
 
@@ -260,9 +271,9 @@ light: {
 Users can toggle between modes using the Sun/Moon icon in the header. Preference is saved to localStorage.
 
 ```typescript
-import { useThemeMode } from '@/app/components/ThemeModeContext';
+import { useThemeMode } from '@/app/components/ThemeModeContext'
 
-const { mode, toggleMode } = useThemeMode();
+const { mode, toggleMode } = useThemeMode()
 ```
 
 ### Update Content
@@ -309,11 +320,13 @@ yarn start
 ## 📝 Recent Improvements
 
 See documentation for detailed guides:
+
 - ✅ [IMPROVEMENTS.md](IMPROVEMENTS.md) - 6 new pages, icon buttons, animations
 - ✅ [THEME_GUIDE.md](THEME_GUIDE.md) - Centralized theme system guide
 - ✅ [LIGHT_DARK_MODE.md](LIGHT_DARK_MODE.md) - Light/dark mode implementation
 
 **Latest Features:**
+
 - ✅ 6 new pages with bilingual content
 - ✅ Icon-only WhatsApp buttons
 - ✅ Professional placeholder images from placehold.co
@@ -339,4 +352,4 @@ Proprietary - Matrix AeroCovers
 
 **Built with ❤️ for UAE Tesla Owners**
 
-*Last Updated: January 2025*
+_Last Updated: January 2025_

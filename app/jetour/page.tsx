@@ -20,14 +20,14 @@ export default function JetourPage() {
       <CategoryHero
         headline={jetourContent.hero.headline}
         subheadline={jetourContent.hero.subheadline}
-        category="jetour"
-        backgroundImage="/images/jetour/roof-rack-lifestyle-1.jpg"
+        category='jetour'
+        backgroundImage='/images/jetour/roof-rack-lifestyle-1.jpg'
       />
       <CategoryProductShowcase
         title={jetourContent.productShowcase.title}
         subtitle={jetourContent.productShowcase.subtitle}
         variants={jetourVariants}
-        category="jetour"
+        category='jetour'
         currency={jetourContent.pricing.currency}
       />
       <CategoryFeatures
@@ -37,14 +37,14 @@ export default function JetourPage() {
       <CategoryLifestyle
         title={jetourContent.lifestyle.title}
         subtitle={jetourContent.lifestyle.subtitle}
-        category="jetour"
+        category='jetour'
         images={jetourContent.lifestyle.images}
       />
       <CategoryPricing
         title={jetourContent.pricing.title}
         subtitle={jetourContent.pricing.subtitle}
         variants={jetourVariants}
-        category="jetour"
+        category='jetour'
         currency={jetourContent.pricing.currency}
         features={jetourContent.pricing.features}
       />
@@ -61,11 +61,10 @@ export default function JetourPage() {
         headline={jetourContent.finalCta.headline}
         subheadline={jetourContent.finalCta.subheadline}
         cta={jetourContent.finalCta.cta}
-        category="jetour"
+        category='jetour'
       />
       <Footer />
       <FloatingWhatsApp />
     </>
   )
 }
-

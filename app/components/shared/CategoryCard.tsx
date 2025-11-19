@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import { Card, CardContent, Typography, Box, Button, useTheme } from '@mui/material';
-import Image from 'next/image';
-import { useLanguage } from '../LanguageContext';
-import type { LocalizedString } from '@/app/types';
-import Link from 'next/link';
+import { Card, CardContent, Typography, Box, Button, useTheme } from '@mui/material'
+import Image from 'next/image'
+import { useLanguage } from '../LanguageContext'
+import type { LocalizedString } from '@/app/types'
+import Link from 'next/link'
 
 interface CategoryCardProps {
-  title: LocalizedString;
-  description: LocalizedString;
-  image: string;
-  href: string;
-  ctaText?: LocalizedString;
+  title: LocalizedString
+  description: LocalizedString
+  image: string
+  href: string
+  ctaText?: LocalizedString
 }
 
 export default function CategoryCard({
@@ -19,21 +19,21 @@ export default function CategoryCard({
   description,
   image,
   href,
-  ctaText,
+  ctaText
 }: CategoryCardProps) {
-  const { locale } = useLanguage();
-  const theme = useTheme();
+  const { locale } = useLanguage()
+  const theme = useTheme()
 
   const defaultCta: LocalizedString = {
     en: 'Explore Products',
-    ar: 'استكشف المنتجات',
-  };
+    ar: 'استكشف المنتجات'
+  }
 
-  const cta = ctaText || defaultCta;
+  const cta = ctaText || defaultCta
 
   return (
     <Card
-      className="card-hover"
+      className='card-hover'
       sx={{
         height: '100%',
         display: 'flex',
@@ -44,8 +44,8 @@ export default function CategoryCard({
         transition: `all ${theme.tokens.transitions.normal} ${theme.tokens.transitions.easing}`,
         '&:hover': {
           transform: 'translateY(-8px)',
-          boxShadow: theme.tokens.shadows.cardHover,
-        },
+          boxShadow: theme.tokens.shadows.cardHover
+        }
       }}
     >
       <Box
@@ -53,7 +53,7 @@ export default function CategoryCard({
           position: 'relative',
           width: '100%',
           height: 300,
-          overflow: 'hidden',
+          overflow: 'hidden'
         }}
       >
         <Image
@@ -61,16 +61,16 @@ export default function CategoryCard({
           alt={title[locale]}
           fill
           style={{ objectFit: 'cover' }}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
         />
       </Box>
       <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', p: 3 }}>
-        <Typography variant="h4" gutterBottom color="text.primary" fontWeight={700}>
+        <Typography variant='h4' gutterBottom color='text.primary' fontWeight={700}>
           {title[locale]}
         </Typography>
         <Typography
-          variant="body1"
-          color="text.secondary"
+          variant='body1'
+          color='text.secondary'
           sx={{ mb: 3, flexGrow: 1, lineHeight: 1.7 }}
         >
           {description[locale]}
@@ -79,14 +79,14 @@ export default function CategoryCard({
           <Button
             component={Link}
             href={href}
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             fullWidth
-            size="large"
+            size='large'
             sx={{
               textTransform: 'none',
               fontWeight: 600,
-              py: 1.5,
+              py: 1.5
             }}
           >
             {cta[locale]}
@@ -94,6 +94,5 @@ export default function CategoryCard({
         </Box>
       </CardContent>
     </Card>
-  );
+  )
 }
-

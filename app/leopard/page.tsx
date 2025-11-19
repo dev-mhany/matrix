@@ -20,14 +20,14 @@ export default function LeopardPage() {
       <CategoryHero
         headline={leopardContent.hero.headline}
         subheadline={leopardContent.hero.subheadline}
-        category="leopard"
-        backgroundImage="/images/leopard/roof-rack-lifestyle-1.jpg"
+        category='leopard'
+        backgroundImage='/images/leopard/roof-rack-lifestyle-1.jpg'
       />
       <CategoryProductShowcase
         title={leopardContent.productShowcase.title}
         subtitle={leopardContent.productShowcase.subtitle}
         variants={leopardVariants}
-        category="leopard"
+        category='leopard'
         currency={leopardContent.pricing.currency}
       />
       <CategoryFeatures
@@ -37,14 +37,14 @@ export default function LeopardPage() {
       <CategoryLifestyle
         title={leopardContent.lifestyle.title}
         subtitle={leopardContent.lifestyle.subtitle}
-        category="leopard"
+        category='leopard'
         images={leopardContent.lifestyle.images}
       />
       <CategoryPricing
         title={leopardContent.pricing.title}
         subtitle={leopardContent.pricing.subtitle}
         variants={leopardVariants}
-        category="leopard"
+        category='leopard'
         currency={leopardContent.pricing.currency}
         features={leopardContent.pricing.features}
       />
@@ -61,11 +61,10 @@ export default function LeopardPage() {
         headline={leopardContent.finalCta.headline}
         subheadline={leopardContent.finalCta.subheadline}
         cta={leopardContent.finalCta.cta}
-        category="leopard"
+        category='leopard'
       />
       <Footer />
       <FloatingWhatsApp />
     </>
   )
 }
-

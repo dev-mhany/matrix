@@ -1,6 +1,7 @@
 # Complete Image Download Plan - BLACK & WHITE Variants
 
 ## Summary
+
 Based on the HALOBLK website analysis, I found the following images that need to be downloaded and organized:
 
 ---
@@ -8,6 +9,7 @@ Based on the HALOBLK website analysis, I found the following images that need to
 ## WHITE VARIANT IMAGES (Product Gallery)
 
 ### Main Product Shots (6 images)
+
 1. **01-white-main.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/halodisc-2-wheel-covers-for-tesla-custom-numbers-whitemodel-3-1886601.jpg?v=1760953312&width=1500`
    - Main hero shot, white with red accents
@@ -28,6 +30,7 @@ Based on the HALOBLK website analysis, I found the following images that need to
    - URL: `https://www.haloblk.com/cdn/shop/files/2_9da99a35-a505-4782-b8f8-8690646b56dd.jpg?v=1761279679&width=1000`
 
 ### Tesla Lifestyle Shots - WHITE COVERS (6 images)
+
 7. **model-s-white.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/Custom-Number-Model-S-P.jpg?v=1761279679&width=1000`
 
@@ -51,6 +54,7 @@ Based on the HALOBLK website analysis, I found the following images that need to
 ## BLACK VARIANT IMAGES (Product Gallery)
 
 ### Main Product Shots (6 images)
+
 1. **01-black-main.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/halodisc-2-wheel-covers-for-tesla-custom-numbers-blackmodel-3-2045265.jpg?v=1760953317&width=1500`
    - Main hero shot, black with red accents
@@ -71,6 +75,7 @@ Based on the HALOBLK website analysis, I found the following images that need to
    - URL: `https://www.haloblk.com/cdn/shop/files/2_e40dcced-a51e-4a30-a72e-d13d5b8f8625.jpg?v=1761279822&width=1000`
 
 ### Tesla Lifestyle Shots - BLACK COVERS (6 images)
+
 7. **model-3-black.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/Custom-Number-Model-3-P_4f1fe426-2bd4-49bc-899f-fee0fefd7814.jpg?v=1761279822&width=1000`
 
@@ -94,6 +99,7 @@ Based on the HALOBLK website analysis, I found the following images that need to
 ## TECHNICAL & FEATURE IMAGES (Shared for both variants)
 
 ### Range & Features
+
 1. **range-boost-detail.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/20251013-171459.jpg?v=1760347067&width=1920`
    - Close-up wheel showing aerodynamics
@@ -102,6 +108,7 @@ Based on the HALOBLK website analysis, I found the following images that need to
    - URL: `https://www.haloblk.com/cdn/shop/files/20250929-164633.jpg?v=1759138752&width=1500`
 
 ### Lifestyle/Action Shots
+
 3. **lifestyle-car-1.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/Model_Y_3_33d12cb2-0d3a-4919-b261-575f7b718655.jpg?v=1761206929&width=1500`
 
@@ -118,11 +125,13 @@ Based on the HALOBLK website analysis, I found the following images that need to
    - URL: `https://www.haloblk.com/cdn/shop/files/Model_3_3.jpg?v=1759306481&width=1500`
 
 ### Video Banner & Color Options
+
 8. **video-banner-hero.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/20251001-231517.jpg?v=1759331756&width=1920`
    - Dark cinematic banner with "HALODISC" text
 
 ### Custom Numbers Section
+
 9. **custom-numbers-showcase.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/20250930-093345.jpg?v=1759196096&width=1000`
    - Shows number customization options
@@ -137,15 +146,18 @@ Based on the HALOBLK website analysis, I found the following images that need to
     - URL: `https://www.haloblk.com/cdn/shop/files/14_2a09c214-1afc-453f-8e07-fbf9af03ade0.jpg?v=1757500635&width=2000`
 
 ### Center Lock System
+
 13. **center-lock-detail.jpg**
     - URL: `https://www.haloblk.com/cdn/shop/files/20250928-101206.jpg?v=1759025575&width=1500`
 
 ### Metallic Cap
+
 14. **metallic-cap-red.jpg**
     - URL: `https://www.haloblk.com/cdn/shop/files/20250919-165901_66883fdd-3215-4f22-b838-5786ddc96cb3.jpg?v=1758767799&width=1920`
     - 5-layer electroplating finish
 
 ### Installation & Protection
+
 15. **installation-process.jpg**
     - URL: `https://www.haloblk.com/cdn/shop/files/20250926-182518.jpg?v=1758882399&width=1920`
 
@@ -156,15 +168,17 @@ Based on the HALOBLK website analysis, I found the following images that need to
     - URL: `https://www.haloblk.com/cdn/shop/files/20250918-143043.jpg?v=1758177222&width=1080`
 
 ### CFD Testing
+
 18. **cfd-analysis-full.jpg**
     - URL: `https://www.haloblk.com/cdn/shop/files/20250926-172720.jpg?v=1759126546&width=2800`
     - CFD comparison visualization
 
 ### Historical Timeline (13 images)
-19-31. Timeline images showing evolution from 1924 to 2025
-    - URLs: Multiple PNGs showing historical race cars
+
+19-31. Timeline images showing evolution from 1924 to 2025 - URLs: Multiple PNGs showing historical race cars
 
 ### Installation Video
+
 32. **installation-video-poster.jpg**
     - URL: `https://www.haloblk.com/cdn/shop/files/20251001-231702.jpg?v=1759331831&width=1200`
 
@@ -173,6 +187,7 @@ Based on the HALOBLK website analysis, I found the following images that need to
 ## VIDEO THUMBNAILS & GIFS
 
 ### Video Thumbnails (for play buttons)
+
 1. **video-thumbnail-1.jpg**
    - URL: `https://www.haloblk.com/cdn/shop/files/preview_images/cd217064c9f64279a746420cb70ba302.thumbnail.0000000000_small.jpg?v=1759126622`
 
@@ -272,12 +287,8 @@ public/images/
 ---
 
 This systematic approach ensures:
+
 - ✅ Each color variant has its own images
 - ✅ Technical images are shared (they're the same for both)
 - ✅ Easy to update product showcase with correct images per variant
 - ✅ Clear organization for future additions
-
-
-
-
-

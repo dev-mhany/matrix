@@ -1,26 +1,26 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: 'images.unsplash.com'
       },
       {
         protocol: 'https',
-        hostname: 'via.placeholder.com',
+        hostname: 'via.placeholder.com'
       },
       {
         protocol: 'https',
-        hostname: 'placehold.co',
-      },
+        hostname: 'placehold.co'
+      }
     ],
     // Allow local images from public folder
-    unoptimized: false,
+    unoptimized: false
   },
   // Enable React strict mode for better development experience
-  reactStrictMode: true,
-};
+  reactStrictMode: true
+}
 
-export default nextConfig;
+export default nextConfig

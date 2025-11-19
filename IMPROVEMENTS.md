@@ -16,6 +16,7 @@ Added 6 complete pages with bilingual (EN/AR) content:
 - **`/privacy`** - Privacy policy with GDPR-compliant sections
 
 All pages include:
+
 - Full Header and Footer integration
 - Bilingual content (English/Arabic)
 - Consistent design system with MUI components
@@ -33,6 +34,7 @@ Updated `WhatsAppButton` component to display only the WhatsApp icon:
 - Updated all 9+ button instances across the site
 
 **Before:**
+
 ```tsx
 <Button>
   <WhatsAppIcon /> Order on WhatsApp
@@ -40,8 +42,9 @@ Updated `WhatsAppButton` component to display only the WhatsApp icon:
 ```
 
 **After:**
+
 ```tsx
-<Button aria-label="Order on WhatsApp">
+<Button aria-label='Order on WhatsApp'>
   <WhatsAppIcon />
 </Button>
 ```
@@ -51,15 +54,18 @@ Updated `WhatsAppButton` component to display only the WhatsApp icon:
 Replaced all SVG placeholders with proper placeholder images from `placehold.co`:
 
 **Product Images:**
+
 - Matte Black: Dark themed placeholders (800x600, 600x400)
 - Gloss White: Light themed placeholders (800x600, 600x400)
 - Carbon Fiber: Premium blue-accented placeholders (800x600, 600x400)
 
 **Lifestyle Images:**
+
 - Dubai Skyline: Dark blue placeholder (800x600)
 - Desert Highway: Warm orange placeholder (800x600)
 
 **Benefits:**
+
 - Images now show actual dimensions
 - Better visual representation of final layout
 - Faster loading (external CDN)
@@ -75,6 +81,7 @@ Created comprehensive `animations.css` with performance-optimized animations:
 #### Animation Types Implemented:
 
 **Entrance Animations:**
+
 - `fadeIn` - Smooth opacity + translateY (600ms)
 - `fadeInUp` - Enhanced fadeIn with more movement (800ms)
 - `slideInLeft` - Horizontal entrance from left (700ms)
@@ -82,17 +89,20 @@ Created comprehensive `animations.css` with performance-optimized animations:
 - `scaleIn` - Zoom-in effect (500ms)
 
 **Hover Effects:**
+
 - `card-hover` - Card lift with shadow enhancement
 - `hover-lift` - Subtle translateY(-8px) on hover
 - `hover-glow` - Blue glow shadow on hover
 - `hover-scale` - 105% scale on hover
 
 **Continuous Animations:**
+
 - `animate-pulse-subtle` - Gentle pulsing (3s infinite) for floating button
 - `animate-float` - Vertical floating motion (3s infinite)
 - `animate-gradient` - Gradient position animation (4s infinite)
 
 **Staggered Delays:**
+
 - Classes: `animate-stagger-1` through `animate-stagger-6`
 - Delay increments: 0.1s per item
 - Perfect for list/grid items
@@ -137,6 +147,7 @@ All improvements pass production checks:
 ### File Changes Summary
 
 **New Files Created:**
+
 - `app/about/page.tsx` (84 lines)
 - `app/contact/page.tsx` (136 lines)
 - `app/shipping/page.tsx` (81 lines)
@@ -147,6 +158,7 @@ All improvements pass production checks:
 - `IMPROVEMENTS.md` (this file)
 
 **Modified Files:**
+
 - `app/lib/content.ts` - Updated footer links, replaced image URLs
 - `app/components/shared/WhatsAppButton.tsx` - Removed text, kept icon only
 - `app/components/sections/*.tsx` - Removed label props, added animation classes
@@ -159,6 +171,7 @@ All improvements pass production checks:
 ### Browser Compatibility
 
 All animations work on:
+
 - ✅ Chrome/Edge (latest)
 - ✅ Firefox (latest)
 - ✅ Safari (latest)
@@ -197,33 +210,37 @@ All animations work on:
 For future development, here are all available animation classes:
 
 ### Entrance Animations
+
 ```tsx
-className="animate-fade-in"       // Basic fade in
-className="animate-fade-in-up"    // Fade in with upward motion
-className="animate-slide-in-left" // Slide from left
-className="animate-slide-in-right"// Slide from right
-className="animate-scale-in"      // Zoom in
+className = 'animate-fade-in' // Basic fade in
+className = 'animate-fade-in-up' // Fade in with upward motion
+className = 'animate-slide-in-left' // Slide from left
+className = 'animate-slide-in-right' // Slide from right
+className = 'animate-scale-in' // Zoom in
 ```
 
 ### Hover Effects
+
 ```tsx
-className="card-hover"    // Card lift + shadow
-className="hover-lift"    // Subtle lift
-className="hover-glow"    // Blue glow shadow
-className="hover-scale"   // Scale to 105%
+className = 'card-hover' // Card lift + shadow
+className = 'hover-lift' // Subtle lift
+className = 'hover-glow' // Blue glow shadow
+className = 'hover-scale' // Scale to 105%
 ```
 
 ### Continuous Effects
+
 ```tsx
-className="animate-pulse-subtle" // Gentle pulse
-className="animate-float"        // Floating motion
-className="animate-gradient"     // Gradient animation
+className = 'animate-pulse-subtle' // Gentle pulse
+className = 'animate-float' // Floating motion
+className = 'animate-gradient' // Gradient animation
 ```
 
 ### Stagger Delays (for lists)
+
 ```tsx
-className="animate-fade-in animate-stagger-1" // 0.1s delay
-className="animate-fade-in animate-stagger-2" // 0.2s delay
+className = 'animate-fade-in animate-stagger-1' // 0.1s delay
+className = 'animate-fade-in animate-stagger-2' // 0.2s delay
 // ... up to animate-stagger-6 (0.6s delay)
 ```
 
@@ -235,5 +252,4 @@ Build Status: ✅ Passing
 Lint Status: ✅ Clean  
 Type Check: ✅ No Errors  
 Pages Added: 6  
-Animations: 15+  
-
+Animations: 15+

@@ -3,33 +3,43 @@
 ## 🎬 Video URLs
 
 ### 1. Main Hero/Gallery Video
+
 **URL:** `https://www.haloblk.com/cdn/shop/videos/c/vp/cd217064c9f64279a746420cb70ba302/cd217064c9f64279a746420cb70ba302.HD-1080p-2.5Mbps-58469027.mp4`
+
 - **Quality:** HD 1080p
 - **Bitrate:** 2.5 Mbps
 - **Use:** Main hero section video with play button overlay
 - **Content:** Cinematic product showcase with Tesla
 
 ### 2. Alternative Gallery Video (SD)
+
 **URL:** `https://www.haloblk.com/cdn/shop/videos/c/vp/447a00311165450ebc1f9f2dad6cafc2/447a00311165450ebc1f9f2dad6cafc2.SD-480p-1.5Mbps-58470714.mp4`
+
 - **Quality:** SD 480p
 - **Bitrate:** 1.5 Mbps
 - **Use:** Mobile/slower connection fallback
 
 ### 3. Feature Demo Video
+
 **URL:** `https://www.haloblk.com/cdn/shop/videos/c/vp/d20761735b28483d9446f776493daee7/d20761735b28483d9446f776493daee7.HD-1080p-2.5Mbps-59288560.mp4`
+
 - **Quality:** HD 1080p
 - **Bitrate:** 2.5 Mbps
 - **Use:** Product feature demonstrations
 
 ### 4. Installation/Unboxing Video
+
 **URL:** `https://www.haloblk.com/cdn/shop/videos/c/vp/107db9dd0c4d40398e27ffb418158dee/107db9dd0c4d40398e27ffb418158dee.HD-1080p-7.2Mbps-59587042.mp4`
+
 - **Quality:** HD 1080p
 - **Bitrate:** 7.2 Mbps (high quality)
 - **Use:** "Unboxing & Install" section
 - **Content:** Step-by-step installation process
 
 ### 5. Additional Feature Video
+
 **URL:** `https://www.haloblk.com/cdn/shop/videos/c/vp/e015250c48324dd0b4219e6261a06e81/e015250c48324dd0b4219e6261a06e81.HD-1080p-3.3Mbps-58543962.mp4`
+
 - **Quality:** HD 1080p
 - **Bitrate:** 3.3 Mbps
 - **Use:** Additional product features/details
@@ -39,20 +49,24 @@
 ## 📝 How to Use These Videos
 
 ### Option 1: Direct Embedding (Not Recommended)
+
 ```html
 <video controls poster="thumbnail.jpg">
-  <source src="VIDEO_URL_HERE" type="video/mp4">
+  <source src="VIDEO_URL_HERE" type="video/mp4" />
 </video>
 ```
+
 ⚠️ **Note:** Hotlinking may violate terms of service. Download and host your own videos.
 
 ### Option 2: Download and Self-Host (Recommended)
+
 ```bash
 # Download video locally
 curl -o public/videos/hero-video.mp4 "VIDEO_URL"
 ```
 
 ### Option 3: Use Video Hosting Service
+
 - **Vimeo** (Professional, customizable)
 - **YouTube** (Free, good SEO)
 - **Wistia** (Marketing-focused)
@@ -62,46 +76,46 @@ curl -o public/videos/hero-video.mp4 "VIDEO_URL"
 ## 🎥 Video Implementation Example
 
 ### Hero Video Component
-```jsx
-'use client';
 
-import { useState } from 'react';
+```jsx
+'use client'
+
+import { useState } from 'react'
 
 export default function VideoHero() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false)
 
   return (
-    <div className="relative w-full aspect-video bg-black">
+    <div className='relative w-full aspect-video bg-black'>
       {!isPlaying ? (
         <>
-          <img 
-            src="/images/video-thumbnail.jpg" 
-            alt="Video thumbnail"
-            className="w-full h-full object-cover"
+          <img
+            src='/images/video-thumbnail.jpg'
+            alt='Video thumbnail'
+            className='w-full h-full object-cover'
           />
           <button
             onClick={() => setIsPlaying(true)}
-            className="absolute inset-0 flex items-center justify-center group"
+            className='absolute inset-0 flex items-center justify-center group'
           >
-            <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-              <svg className="w-10 h-10 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
+            <div className='w-20 h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform'>
+              <svg
+                className='w-10 h-10 text-black ml-1'
+                fill='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path d='M8 5v14l11-7z' />
               </svg>
             </div>
           </button>
         </>
       ) : (
-        <video
-          autoPlay
-          controls
-          className="w-full h-full"
-          src="/videos/hero-video.mp4"
-        >
+        <video autoPlay controls className='w-full h-full' src='/videos/hero-video.mp4'>
           Your browser does not support the video tag.
         </video>
       )}
     </div>
-  );
+  )
 }
 ```
 
@@ -110,24 +124,28 @@ export default function VideoHero() {
 ## 🎬 Video Best Practices
 
 ### 1. Video Optimization
+
 - **Compress videos** to reduce file size (use HandBrake or FFmpeg)
 - **Multiple quality versions** for different connection speeds
 - **Poster images** (thumbnail) should be engaging
 - **Auto-play muted** for background videos
 
 ### 2. Format & Codec
+
 - **Format:** MP4 (best compatibility)
 - **Codec:** H.264 (most compatible)
 - **Audio:** AAC
 - **Resolution:** 1920x1080 (Full HD)
 
 ### 3. Performance
+
 - **Lazy load** videos not in viewport
 - **Preload metadata** only (not full video)
 - **Use `loading="lazy"` attribute**
 - Consider using video CDN
 
 ### 4. Accessibility
+
 - **Add captions/subtitles**
 - **Descriptive poster images**
 - **Keyboard controls** (play/pause with spacebar)
@@ -199,6 +217,7 @@ If you want original content, consider:
    - Quick testimonials
 
 ### Tools for Video Creation:
+
 - **CapCut** - Free, user-friendly editor
 - **DaVinci Resolve** - Professional, free
 - **iMovie** - Mac users
@@ -217,8 +236,3 @@ If you want original content, consider:
 ---
 
 **Remember:** Always ensure you have the rights to use any videos. Creating your own content is the safest and most authentic approach!
-
-
-
-
-

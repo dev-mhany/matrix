@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import { Box, Container, Typography, useTheme } from '@mui/material';
-import WhatsAppButton from '../shared/WhatsAppButton';
-import { useLanguage } from '../LanguageContext';
-import type { LocalizedString, Category } from '@/app/types';
+import { Box, Container, Typography, useTheme } from '@mui/material'
+import WhatsAppButton from '../shared/WhatsAppButton'
+import { useLanguage } from '../LanguageContext'
+import type { LocalizedString, Category } from '@/app/types'
 
 interface CategoryFinalCTAProps {
-  headline: LocalizedString;
-  subheadline: LocalizedString;
-  cta: LocalizedString;
-  category: Category;
+  headline: LocalizedString
+  subheadline: LocalizedString
+  cta: LocalizedString
+  category: Category
 }
 
 export default function CategoryFinalCTA({
   headline,
   subheadline,
   cta,
-  category,
+  category
 }: CategoryFinalCTAProps) {
-  const { locale } = useLanguage();
-  const theme = useTheme();
+  const { locale } = useLanguage()
+  const theme = useTheme()
 
   return (
     <Box
@@ -35,29 +35,29 @@ export default function CategoryFinalCTA({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: theme.tokens.gradients.radialDark,
-        },
+          backgroundImage: theme.tokens.gradients.radialDark
+        }
       }}
     >
-      <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth='md' sx={{ position: 'relative', zIndex: 1 }}>
         <Box sx={{ textAlign: 'center' }}>
           <Typography
-            variant="h2"
+            variant='h2'
             gutterBottom
             sx={{
               fontWeight: 800,
-              mb: 3,
+              mb: 3
             }}
           >
             {headline[locale]}
           </Typography>
 
           <Typography
-            variant="h6"
-            color="text.secondary"
+            variant='h6'
+            color='text.secondary'
             sx={{
               mb: 5,
-              lineHeight: 1.8,
+              lineHeight: 1.8
             }}
           >
             {subheadline[locale]}
@@ -65,8 +65,8 @@ export default function CategoryFinalCTA({
 
           <WhatsAppButton
             category={category}
-            placement="final-cta"
-            size="large"
+            placement='final-cta'
+            size='large'
             isPrimary
             showText
             customText={cta[locale]}
@@ -74,6 +74,5 @@ export default function CategoryFinalCTA({
         </Box>
       </Container>
     </Box>
-  );
+  )
 }
-

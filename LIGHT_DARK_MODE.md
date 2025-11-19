@@ -11,7 +11,7 @@ The Matrix landing page now supports both light and dark modes with seamless swi
 ✅ **Persistent Preference** - User choice saved to localStorage  
 ✅ **System Preference Detection** - Respects OS dark mode setting  
 ✅ **All Components Compatible** - Every section works in both modes  
-✅ **Icon Toggle** - Sun/Moon icon in header  
+✅ **Icon Toggle** - Sun/Moon icon in header
 
 ## Architecture
 
@@ -27,10 +27,12 @@ const tokens = {
       bgDark: '#0B0D10',
       bgPaper: '#1A1D23',
       textPrimary: '#FFFFFF',
-      textSecondary: '#B0B8C4',
+      textSecondary: '#B0B8C4'
       // ... more dark colors
     },
-    gradients: { /* dark mode gradients */ }
+    gradients: {
+      /* dark mode gradients */
+    }
   },
   light: {
     colors: {
@@ -38,12 +40,14 @@ const tokens = {
       bgDark: '#F5F7FA',
       bgPaper: '#FFFFFF',
       textPrimary: '#1F2937',
-      textSecondary: '#6B7280',
+      textSecondary: '#6B7280'
       // ... more light colors
     },
-    gradients: { /* light mode gradients */ }
+    gradients: {
+      /* light mode gradients */
+    }
   }
-};
+}
 ```
 
 ### 2. Theme Mode Context (`app/components/ThemeModeContext.tsx`)
@@ -52,13 +56,14 @@ Manages the current theme mode state:
 
 ```typescript
 interface ThemeModeContextType {
-  mode: 'light' | 'dark';
-  toggleMode: () => void;
-  setMode: (mode: 'light' | 'dark') => void;
+  mode: 'light' | 'dark'
+  toggleMode: () => void
+  setMode: (mode: 'light' | 'dark') => void
 }
 ```
 
 **Features:**
+
 - Initializes from localStorage
 - Falls back to system preference (`prefers-color-scheme`)
 - Defaults to dark mode if no preference found
@@ -69,13 +74,14 @@ interface ThemeModeContextType {
 Updated to create theme based on current mode:
 
 ```typescript
-const { mode } = useThemeMode();
-const theme = React.useMemo(() => createAppTheme(mode), [mode]);
+const { mode } = useThemeMode()
+const theme = React.useMemo(() => createAppTheme(mode), [mode])
 ```
 
 ### 4. Theme Mode Toggle (`app/components/shared/ThemeModeToggle.tsx`)
 
 Icon button in the header that toggles between modes:
+
 - **Dark Mode** → Shows Sun icon (☀️)
 - **Light Mode** → Shows Moon icon (🌙)
 - Animated rotation on click
@@ -85,31 +91,31 @@ Icon button in the header that toggles between modes:
 
 ### Dark Mode Colors
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| bgDark | `#0B0D10` | Main background |
-| bgPaper | `#1A1D23` | Cards, paper |
-| textPrimary | `#FFFFFF` | Main text |
-| textSecondary | `#B0B8C4` | Secondary text |
+| Token         | Value     | Usage           |
+| ------------- | --------- | --------------- |
+| bgDark        | `#0B0D10` | Main background |
+| bgPaper       | `#1A1D23` | Cards, paper    |
+| textPrimary   | `#FFFFFF` | Main text       |
+| textSecondary | `#B0B8C4` | Secondary text  |
 
 ### Light Mode Colors
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| bgDark | `#F5F7FA` | Main background |
-| bgPaper | `#FFFFFF` | Cards, paper |
-| textPrimary | `#1F2937` | Main text |
-| textSecondary | `#6B7280` | Secondary text |
+| Token         | Value     | Usage           |
+| ------------- | --------- | --------------- |
+| bgDark        | `#F5F7FA` | Main background |
+| bgPaper       | `#FFFFFF` | Cards, paper    |
+| textPrimary   | `#1F2937` | Main text       |
+| textSecondary | `#6B7280` | Secondary text  |
 
 ### Colors That Stay The Same
 
-| Token | Value | Both Modes |
-|-------|-------|------------|
-| primary | `#1EA7FD` | ✅ |
-| secondary | `#FF6B6B` | ✅ |
-| success | `#10B981` | ✅ |
-| warning | `#F59E0B` | ✅ |
-| error | `#EF4444` | ✅ |
+| Token     | Value     | Both Modes |
+| --------- | --------- | ---------- |
+| primary   | `#1EA7FD` | ✅         |
+| secondary | `#FF6B6B` | ✅         |
+| success   | `#10B981` | ✅         |
+| warning   | `#F59E0B` | ✅         |
+| error     | `#EF4444` | ✅         |
 
 ## Usage
 
@@ -120,7 +126,7 @@ import { useThemeMode } from '@/app/components/ThemeModeContext';
 
 export default function MyComponent() {
   const { mode, toggleMode, setMode } = useThemeMode();
-  
+
   return (
     <div>
       <p>Current mode: {mode}</p>
@@ -142,13 +148,13 @@ import { useTheme } from '@mui/material';
 export default function MyComponent() {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
-  
+
   return (
     <Box sx={{
       // MUI automatically adjusts these
       backgroundColor: 'background.paper',
       color: 'text.primary',
-      
+
       // Or use theme tokens
       background: theme.tokens.gradients.bg,
       boxShadow: theme.tokens.shadows.card,
@@ -175,6 +181,7 @@ The theme toggle button appears in:
 ## LocalStorage Key
 
 User preference is stored as:
+
 ```javascript
 localStorage.getItem('matrix-theme-mode') // 'light' | 'dark'
 ```
@@ -185,13 +192,14 @@ On first visit (no localStorage), the app checks system preference:
 
 ```typescript
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  return 'dark';
+  return 'dark'
 }
 ```
 
 ## Transition Behavior
 
 All theme changes are animated with smooth transitions:
+
 - Background colors fade smoothly
 - Text colors transition
 - Shadows adjust gradually
@@ -210,20 +218,20 @@ Controlled by: `theme.tokens.transitions.normal` (300ms)
 
 ### Test Checklist
 
-| Section | Dark Mode | Light Mode |
-|---------|-----------|------------|
-| Hero | ✅ | ✅ |
-| Header | ✅ | ✅ |
-| Product Showcase | ✅ | ✅ |
-| Lifestyle | ✅ | ✅ |
-| Features | ✅ | ✅ |
-| Video Section | ✅ | ✅ |
-| Pricing | ✅ | ✅ |
-| Testimonials | ✅ | ✅ |
-| FAQ | ✅ | ✅ |
-| Final CTA | ✅ | ✅ |
-| Footer | ✅ | ✅ |
-| Floating Button | ✅ | ✅ |
+| Section          | Dark Mode | Light Mode |
+| ---------------- | --------- | ---------- |
+| Hero             | ✅        | ✅         |
+| Header           | ✅        | ✅         |
+| Product Showcase | ✅        | ✅         |
+| Lifestyle        | ✅        | ✅         |
+| Features         | ✅        | ✅         |
+| Video Section    | ✅        | ✅         |
+| Pricing          | ✅        | ✅         |
+| Testimonials     | ✅        | ✅         |
+| FAQ              | ✅        | ✅         |
+| Final CTA        | ✅        | ✅         |
+| Footer           | ✅        | ✅         |
+| Floating Button  | ✅        | ✅         |
 
 ### Browser DevTools Testing
 
@@ -247,6 +255,7 @@ location.reload()
 ## Component Updates
 
 All existing components automatically work with both modes because they use:
+
 - MUI palette colors (`primary.main`, `text.primary`, etc.)
 - Theme tokens (`theme.tokens.colors.*`, `theme.tokens.gradients.*`)
 
@@ -255,6 +264,7 @@ No component-specific changes needed! 🎉
 ## Gradients in Both Modes
 
 ### Dark Mode Gradients
+
 ```typescript
 primary: 'linear-gradient(135deg, #1EA7FD 0%, #4FC3F7 100%)'
 text: 'linear-gradient(135deg, #FFFFFF 0%, #B0B8C4 100%)'
@@ -262,10 +272,11 @@ bg: 'linear-gradient(135deg, #0B0D10 0%, #1A1D23 100%)'
 ```
 
 ### Light Mode Gradients
+
 ```typescript
 primary: 'linear-gradient(135deg, #1EA7FD 0%, #4FC3F7 100%)' // Same
-text: 'linear-gradient(135deg, #1F2937 0%, #6B7280 100%)'    // Darker
-bg: 'linear-gradient(135deg, #F5F7FA 0%, #FFFFFF 100%)'      // Light
+text: 'linear-gradient(135deg, #1F2937 0%, #6B7280 100%)' // Darker
+bg: 'linear-gradient(135deg, #F5F7FA 0%, #FFFFFF 100%)' // Light
 ```
 
 ## Accessibility
@@ -285,6 +296,7 @@ bg: 'linear-gradient(135deg, #F5F7FA 0%, #FFFFFF 100%)'      // Light
 ## Future Enhancements
 
 Potential additions:
+
 - Auto mode that follows system changes in real-time
 - Scheduled mode switching (e.g., light during day, dark at night)
 - Per-section mode override
@@ -294,7 +306,9 @@ Potential additions:
 ## Troubleshooting
 
 ### Theme not changing?
+
 Check that you're using theme tokens:
+
 ```typescript
 // ❌ Hardcoded - won't change
 sx={{ backgroundColor: '#1A1D23' }}
@@ -304,9 +318,11 @@ sx={{ backgroundColor: 'background.paper' }}
 ```
 
 ### Toggle button not visible?
+
 Ensure `ThemeModeProvider` wraps your component tree (it's in layout.tsx)
 
 ### Preference not saving?
+
 Check browser localStorage is enabled and not in incognito mode
 
 ---
@@ -314,4 +330,3 @@ Check browser localStorage is enabled and not in incognito mode
 **Last Updated**: January 2025  
 **Mode Support**: Light & Dark  
 **Default Mode**: Dark
-

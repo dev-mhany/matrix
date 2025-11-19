@@ -6,7 +6,19 @@ import Footer from './components/sections/Footer'
 import FloatingWhatsApp from './components/shared/FloatingWhatsApp'
 import CategoryCard from './components/shared/CategoryCard'
 import CategoryTestimonials from './components/sections/CategoryTestimonials'
-import { Box, Container, Typography, Grid, useTheme, Card, CardContent, Chip, Button, IconButton, Stack } from '@mui/material'
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  useTheme,
+  Card,
+  CardContent,
+  Chip,
+  Button,
+  IconButton,
+  Stack
+} from '@mui/material'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { useLanguage } from './components/LanguageContext'
@@ -22,24 +34,26 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveImageIndex((prev) => (prev + 1) % carouselImages.length)
+      setActiveImageIndex(prev => (prev + 1) % carouselImages.length)
     }, 5000) // Auto-rotate every 5 seconds
 
     return () => clearInterval(interval)
   }, [carouselImages.length])
 
   const handlePrev = () => {
-    setActiveImageIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)
+    setActiveImageIndex(
+      prev => (prev - 1 + carouselImages.length) % carouselImages.length
+    )
   }
 
   const handleNext = () => {
-    setActiveImageIndex((prev) => (prev + 1) % carouselImages.length)
+    setActiveImageIndex(prev => (prev + 1) % carouselImages.length)
   }
 
   return (
     <>
       <Header />
-      
+
       {/* Hero Section with Carousel */}
       <Box
         sx={{
@@ -48,7 +62,7 @@ export default function Home() {
           alignItems: 'center',
           position: 'relative',
           background: theme.tokens.gradients.bg,
-          overflow: 'hidden',
+          overflow: 'hidden'
         }}
       >
         {/* Carousel Background Images */}
@@ -66,7 +80,7 @@ export default function Home() {
               zIndex: 0,
               backgroundImage: `url('${image}')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              backgroundPosition: 'center'
             }}
           />
         ))}
@@ -80,7 +94,7 @@ export default function Home() {
             right: 0,
             bottom: 0,
             backgroundImage: theme.tokens.gradients.radialPrimary,
-            zIndex: 1,
+            zIndex: 1
           }}
         />
 
@@ -99,9 +113,9 @@ export default function Home() {
                 color: 'text.primary',
                 '&:hover': {
                   backgroundColor: 'primary.main',
-                  color: 'white',
+                  color: 'white'
                 },
-                boxShadow: theme.tokens.shadows.card,
+                boxShadow: theme.tokens.shadows.card
               }}
             >
               <ArrowBackIosNewIcon />
@@ -118,9 +132,9 @@ export default function Home() {
                 color: 'text.primary',
                 '&:hover': {
                   backgroundColor: 'primary.main',
-                  color: 'white',
+                  color: 'white'
                 },
-                boxShadow: theme.tokens.shadows.card,
+                boxShadow: theme.tokens.shadows.card
               }}
             >
               <ArrowForwardIosIcon />
@@ -131,15 +145,15 @@ export default function Home() {
         {/* Dots Indicator */}
         {carouselImages.length > 1 && (
           <Stack
-            direction="row"
+            direction='row'
             spacing={1}
-            justifyContent="center"
+            justifyContent='center'
             sx={{
               position: 'absolute',
               bottom: { xs: 20, md: 40 },
               left: '50%',
               transform: 'translateX(-50%)',
-              zIndex: 3,
+              zIndex: 3
             }}
           >
             {carouselImages.map((_, index) => (
@@ -150,32 +164,33 @@ export default function Home() {
                   width: 10,
                   height: 10,
                   borderRadius: '50%',
-                  backgroundColor: index === activeImageIndex ? 'primary.main' : 'background.paper',
+                  backgroundColor:
+                    index === activeImageIndex ? 'primary.main' : 'background.paper',
                   opacity: index === activeImageIndex ? 1 : 0.5,
                   cursor: 'pointer',
                   transition: 'all 0.3s',
                   '&:hover': {
                     opacity: 1,
-                    transform: 'scale(1.2)',
-                  },
+                    transform: 'scale(1.2)'
+                  }
                 }}
               />
             ))}
           </Stack>
         )}
 
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
+        <Container maxWidth='lg' sx={{ position: 'relative', zIndex: 2 }}>
           <Box
-            className="animate-fade-in-up"
+            className='animate-fade-in-up'
             sx={{
               maxWidth: 900,
               mx: 'auto',
               textAlign: 'center',
-              pt: { xs: 8, md: 0 },
+              pt: { xs: 8, md: 0 }
             }}
           >
             <Typography
-              variant="h1"
+              variant='h1'
               gutterBottom
               sx={{
                 fontWeight: 800,
@@ -183,20 +198,20 @@ export default function Home() {
                 background: theme.tokens.gradients.text,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                fontSize: { xs: '2.5rem', md: '4rem' },
+                fontSize: { xs: '2.5rem', md: '4rem' }
               }}
             >
               {mainPage.hero.headline[locale]}
             </Typography>
 
             <Typography
-              variant="h5"
-              color="text.secondary"
+              variant='h5'
+              color='text.secondary'
               sx={{
                 mb: 4,
                 lineHeight: 1.6,
                 fontWeight: 400,
-                px: { xs: 2, md: 0 },
+                px: { xs: 2, md: 0 }
               }}
             >
               {mainPage.hero.subheadline[locale]}
@@ -209,7 +224,7 @@ export default function Home() {
                 flexWrap: 'wrap',
                 gap: 2,
                 justifyContent: 'center',
-                mb: 5,
+                mb: 5
               }}
             >
               <Chip
@@ -220,7 +235,7 @@ export default function Home() {
                   px: 1,
                   fontWeight: 600,
                   backgroundColor: 'background.paper',
-                  boxShadow: theme.tokens.shadows.card,
+                  boxShadow: theme.tokens.shadows.card
                 }}
               />
               <Chip
@@ -231,7 +246,7 @@ export default function Home() {
                   px: 1,
                   fontWeight: 600,
                   backgroundColor: 'background.paper',
-                  boxShadow: theme.tokens.shadows.card,
+                  boxShadow: theme.tokens.shadows.card
                 }}
               />
               <Chip
@@ -242,7 +257,7 @@ export default function Home() {
                   px: 1,
                   fontWeight: 600,
                   backgroundColor: 'background.paper',
-                  boxShadow: theme.tokens.shadows.card,
+                  boxShadow: theme.tokens.shadows.card
                 }}
               />
             </Box>
@@ -252,18 +267,22 @@ export default function Home() {
 
       {/* Features Section */}
       <Box
-        id="features"
+        id='features'
         sx={{
           py: { xs: 8, md: 12 },
-          backgroundColor: 'background.paper',
+          backgroundColor: 'background.paper'
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth='lg'>
           <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography variant="h2" gutterBottom>
+            <Typography variant='h2' gutterBottom>
               {mainPage.features.title[locale]}
             </Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
+            <Typography
+              variant='h6'
+              color='text.secondary'
+              sx={{ maxWidth: 600, mx: 'auto' }}
+            >
               {mainPage.features.subtitle[locale]}
             </Typography>
           </Box>
@@ -272,28 +291,37 @@ export default function Home() {
             {mainPage.features.items.map((feature, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card
-                  className="card-hover"
+                  className='card-hover'
                   elevation={2}
                   sx={{
                     height: '100%',
                     backgroundColor: 'background.default',
                     borderRadius: 3,
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.3s ease'
                   }}
                 >
                   <CardContent sx={{ textAlign: 'center', p: 4 }}>
                     <Box
                       sx={{
                         fontSize: '4rem',
-                        mb: 2,
+                        mb: 2
                       }}
                     >
                       {feature.icon}
                     </Box>
-                    <Typography variant="h5" gutterBottom fontWeight={600} color="text.primary">
+                    <Typography
+                      variant='h5'
+                      gutterBottom
+                      fontWeight={600}
+                      color='text.primary'
+                    >
                       {feature.title[locale]}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
+                    <Typography
+                      variant='body2'
+                      color='text.secondary'
+                      sx={{ lineHeight: 1.7 }}
+                    >
                       {feature.description[locale]}
                     </Typography>
                   </CardContent>
@@ -308,12 +336,12 @@ export default function Home() {
       <Box
         sx={{
           py: { xs: 8, md: 12 },
-          backgroundColor: 'background.default',
+          backgroundColor: 'background.default'
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth='lg'>
           <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="h2" gutterBottom>
+            <Typography variant='h2' gutterBottom>
               {mainPage.stats.title[locale]}
             </Typography>
           </Box>
@@ -322,18 +350,18 @@ export default function Home() {
               <Grid item xs={6} md={3} key={index}>
                 <Box sx={{ textAlign: 'center' }}>
                   <Typography
-                    variant="h2"
+                    variant='h2'
                     sx={{
                       fontWeight: 800,
                       background: theme.tokens.gradients.text,
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
-                      mb: 1,
+                      mb: 1
                     }}
                   >
                     {stat.number}
                   </Typography>
-                  <Typography variant="h6" color="text.secondary">
+                  <Typography variant='h6' color='text.secondary'>
                     {stat.label[locale]}
                   </Typography>
                 </Box>
@@ -345,18 +373,18 @@ export default function Home() {
 
       {/* Category Showcase Section */}
       <Box
-        id="categories"
+        id='categories'
         sx={{
           py: { xs: 8, md: 12 },
-          backgroundColor: 'background.paper',
+          backgroundColor: 'background.paper'
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth='lg'>
           <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="h2" gutterBottom>
+            <Typography variant='h2' gutterBottom>
               {mainPage.categories.title[locale]}
             </Typography>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant='h6' color='text.secondary'>
               {mainPage.categories.subtitle[locale]}
             </Typography>
           </Box>
@@ -412,50 +440,50 @@ export default function Home() {
             bottom: 0,
             backgroundImage: theme.tokens.gradients.radialPrimary,
             opacity: 0.5,
-            zIndex: 0,
-          },
+            zIndex: 0
+          }
         }}
       >
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
+        <Container maxWidth='md' sx={{ position: 'relative', zIndex: 1 }}>
           <Box sx={{ textAlign: 'center' }}>
             <Typography
-              variant="h2"
+              variant='h2'
               gutterBottom
               sx={{
                 fontWeight: 800,
                 mb: 3,
                 background: theme.tokens.gradients.text,
                 WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
+                WebkitTextFillColor: 'transparent'
               }}
             >
               {mainPage.finalCta.headline[locale]}
             </Typography>
             <Typography
-              variant="h6"
-              color="text.secondary"
+              variant='h6'
+              color='text.secondary'
               sx={{
                 mb: 5,
                 lineHeight: 1.7,
                 maxWidth: 700,
-                mx: 'auto',
+                mx: 'auto'
               }}
             >
               {mainPage.finalCta.subheadline[locale]}
             </Typography>
             <Button
               component={Link}
-              href="#categories"
-              variant="contained"
-              color="primary"
-              size="large"
+              href='#categories'
+              variant='contained'
+              color='primary'
+              size='large'
               sx={{
                 py: 2,
                 px: 6,
                 fontSize: '1.1rem',
                 fontWeight: 600,
                 textTransform: 'none',
-                borderRadius: 3,
+                borderRadius: 3
               }}
             >
               {mainPage.finalCta.cta[locale]}

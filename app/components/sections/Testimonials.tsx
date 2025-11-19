@@ -1,53 +1,61 @@
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
-import { Box, Container, Typography, Card, CardContent, IconButton, Stack } from '@mui/material';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import { useLanguage } from '../LanguageContext';
-import { content } from '@/app/lib/content';
+import { useState, useEffect } from 'react'
+import {
+  Box,
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  IconButton,
+  Stack
+} from '@mui/material'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote'
+import { useLanguage } from '../LanguageContext'
+import { content } from '@/app/lib/content'
 
 export default function Testimonials() {
-  const { locale } = useLanguage();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const testimonials = content.testimonials.items;
+  const { locale } = useLanguage()
+  const [activeIndex, setActiveIndex] = useState(0)
+  const testimonials = content.testimonials.items
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000); // Auto-rotate every 5 seconds
+      setActiveIndex(prev => (prev + 1) % testimonials.length)
+    }, 5000) // Auto-rotate every 5 seconds
 
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+    return () => clearInterval(interval)
+  }, [testimonials.length])
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+    setActiveIndex(prev => (prev - 1 + testimonials.length) % testimonials.length)
+  }
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  };
+    setActiveIndex(prev => (prev + 1) % testimonials.length)
+  }
 
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, backgroundColor: 'background.paper' }}>
-      <Container maxWidth="md">
+      <Container maxWidth='md'>
         {/* Title */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant='h2' gutterBottom>
             {content.testimonials.title[locale]}
           </Typography>
         </Box>
 
         {/* Testimonial Card */}
         <Card
-          className="animate-fade-in"
+          className='animate-fade-in'
           elevation={4}
           sx={{
             backgroundColor: 'background.default',
             borderRadius: 3,
             position: 'relative',
-            minHeight: 300,
+            minHeight: 300
           }}
         >
           <CardContent sx={{ p: { xs: 4, md: 6 }, textAlign: 'center' }}>
@@ -57,44 +65,44 @@ export default function Testimonials() {
                 fontSize: '4rem',
                 color: 'primary.main',
                 opacity: 0.3,
-                mb: 2,
+                mb: 2
               }}
             />
 
             {/* Quote */}
             <Typography
-              variant="h6"
-              color="text.primary"
+              variant='h6'
+              color='text.primary'
               sx={{
                 mb: 4,
                 fontStyle: 'italic',
                 lineHeight: 1.8,
-                minHeight: 120,
+                minHeight: 120
               }}
             >
               &ldquo;{testimonials[activeIndex].quote[locale]}&rdquo;
             </Typography>
 
             {/* Author */}
-            <Typography variant="h6" fontWeight={700} gutterBottom color="text.primary">
+            <Typography variant='h6' fontWeight={700} gutterBottom color='text.primary'>
               {testimonials[activeIndex].author[locale]}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant='body2' color='text.secondary'>
               {testimonials[activeIndex].role[locale]}
             </Typography>
           </CardContent>
 
           {/* Navigation Buttons */}
           <Stack
-            direction="row"
-            justifyContent="space-between"
+            direction='row'
+            justifyContent='space-between'
             sx={{
               position: 'absolute',
               top: '50%',
               left: 0,
               right: 0,
               transform: 'translateY(-50%)',
-              px: { xs: 1, md: 2 },
+              px: { xs: 1, md: 2 }
             }}
           >
             <IconButton
@@ -103,8 +111,8 @@ export default function Testimonials() {
                 backgroundColor: 'background.paper',
                 '&:hover': {
                   backgroundColor: 'primary.main',
-                  color: 'white',
-                },
+                  color: 'white'
+                }
               }}
             >
               <ArrowBackIosNewIcon />
@@ -115,8 +123,8 @@ export default function Testimonials() {
                 backgroundColor: 'background.paper',
                 '&:hover': {
                   backgroundColor: 'primary.main',
-                  color: 'white',
-                },
+                  color: 'white'
+                }
               }}
             >
               <ArrowForwardIosIcon />
@@ -124,12 +132,7 @@ export default function Testimonials() {
           </Stack>
 
           {/* Dots Indicator */}
-          <Stack
-            direction="row"
-            spacing={1}
-            justifyContent="center"
-            sx={{ pb: 3 }}
-          >
+          <Stack direction='row' spacing={1} justifyContent='center' sx={{ pb: 3 }}>
             {testimonials.map((_, index) => (
               <Box
                 key={index}
@@ -138,10 +141,11 @@ export default function Testimonials() {
                   width: 10,
                   height: 10,
                   borderRadius: '50%',
-                  backgroundColor: index === activeIndex ? 'primary.main' : 'text.secondary',
+                  backgroundColor:
+                    index === activeIndex ? 'primary.main' : 'text.secondary',
                   opacity: index === activeIndex ? 1 : 0.3,
                   cursor: 'pointer',
-                  transition: 'all 0.3s',
+                  transition: 'all 0.3s'
                 }}
               />
             ))}
@@ -149,6 +153,5 @@ export default function Testimonials() {
         </Card>
       </Container>
     </Box>
-  );
+  )
 }
-

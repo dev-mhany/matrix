@@ -1,45 +1,55 @@
-'use client';
+'use client'
 
-import { Box, Container, Grid, Typography, TextField, Button, IconButton, Stack, Link } from '@mui/material';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import { useLanguage } from '../LanguageContext';
-import { content } from '@/app/lib/content';
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  IconButton,
+  Stack,
+  Link
+} from '@mui/material'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import YouTubeIcon from '@mui/icons-material/YouTube'
+import { useLanguage } from '../LanguageContext'
+import { content } from '@/app/lib/content'
 
 export default function Footer() {
-  const { locale } = useLanguage();
+  const { locale } = useLanguage()
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     // TODO: Implement newsletter subscription
-    alert(locale === 'en' ? 'Thanks for subscribing!' : 'شكرا لاشتراكك!');
-  };
+    alert(locale === 'en' ? 'Thanks for subscribing!' : 'شكرا لاشتراكك!')
+  }
 
   return (
     <Box
-      component="footer"
+      component='footer'
       sx={{
         backgroundColor: 'background.paper',
         py: { xs: 6, md: 8 },
         borderTop: '1px solid',
-        borderColor: 'rgba(255, 255, 255, 0.1)',
+        borderColor: 'rgba(255, 255, 255, 0.1)'
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <Grid container spacing={4}>
           {/* About */}
           <Grid item xs={12} md={4}>
-            <Typography variant="h5" fontWeight={700} gutterBottom>
+            <Typography variant='h5' fontWeight={700} gutterBottom>
               {content.header.logo}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            <Typography variant='body2' color='text.secondary' sx={{ mb: 2 }}>
               {content.footer.about.description[locale]}
             </Typography>
           </Grid>
 
           {/* Quick Links */}
           <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6" fontWeight={600} gutterBottom>
+            <Typography variant='h6' fontWeight={600} gutterBottom>
               {content.footer.links.title[locale]}
             </Typography>
             <Stack spacing={1}>
@@ -47,13 +57,13 @@ export default function Footer() {
                 <Link
                   key={index}
                   href={link.href}
-                  underline="hover"
-                  color="text.secondary"
+                  underline='hover'
+                  color='text.secondary'
                   sx={{
                     fontSize: '0.875rem',
                     '&:hover': {
-                      color: 'primary.main',
-                    },
+                      color: 'primary.main'
+                    }
                   }}
                 >
                   {link.label[locale]}
@@ -64,21 +74,21 @@ export default function Footer() {
 
           {/* Newsletter & Social */}
           <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6" fontWeight={600} gutterBottom>
+            <Typography variant='h6' fontWeight={600} gutterBottom>
               {content.footer.newsletter.title[locale]}
             </Typography>
-            <Box component="form" onSubmit={handleNewsletterSubmit} sx={{ mb: 3 }}>
+            <Box component='form' onSubmit={handleNewsletterSubmit} sx={{ mb: 3 }}>
               <TextField
                 fullWidth
-                size="small"
+                size='small'
                 placeholder={content.footer.newsletter.placeholder[locale]}
-                type="email"
+                type='email'
                 required
                 sx={{ mb: 1 }}
               />
               <Button
-                type="submit"
-                variant="contained"
+                type='submit'
+                variant='contained'
                 fullWidth
                 sx={{ textTransform: 'none' }}
               >
@@ -86,32 +96,32 @@ export default function Footer() {
               </Button>
             </Box>
 
-            <Typography variant="h6" fontWeight={600} gutterBottom>
+            <Typography variant='h6' fontWeight={600} gutterBottom>
               {content.footer.social.title[locale]}
             </Typography>
-            <Stack direction="row" spacing={1}>
+            <Stack direction='row' spacing={1}>
               <IconButton
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener"
+                href='https://instagram.com'
+                target='_blank'
+                rel='noopener'
                 sx={{
                   color: 'text.secondary',
                   '&:hover': {
-                    color: 'primary.main',
-                  },
+                    color: 'primary.main'
+                  }
                 }}
               >
                 <InstagramIcon />
               </IconButton>
               <IconButton
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener"
+                href='https://youtube.com'
+                target='_blank'
+                rel='noopener'
                 sx={{
                   color: 'text.secondary',
                   '&:hover': {
-                    color: 'primary.main',
-                  },
+                    color: 'primary.main'
+                  }
                 }}
               >
                 <YouTubeIcon />
@@ -122,20 +132,19 @@ export default function Footer() {
 
         {/* Copyright */}
         <Box
-        sx={{
-          mt: 6,
-          pt: 3,
-          borderTop: '1px solid',
-          borderColor: (theme) => theme.palette.text.primary + '1A', // 10% opacity
-          textAlign: 'center',
-        }}
+          sx={{
+            mt: 6,
+            pt: 3,
+            borderTop: '1px solid',
+            borderColor: theme => theme.palette.text.primary + '1A', // 10% opacity
+            textAlign: 'center'
+          }}
         >
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant='body2' color='text.secondary'>
             {content.footer.copyright[locale]}
           </Typography>
         </Box>
       </Container>
     </Box>
-  );
+  )
 }
-

@@ -1,48 +1,47 @@
-export type Locale = 'en' | 'ar';
+export type Locale = 'en' | 'ar'
 
-export type Category = 'tesla' | 'jetour' | 'leopard';
+export type Category = 'tesla' | 'jetour' | 'leopard'
 
-export type Variant = 'Matte Black' | 'Gloss White' | 'Carbon Fiber Edition';
+export type Variant = 'Matte Black' | 'Gloss White' | 'Carbon Fiber Edition'
 
-export type Model = 'Tesla Model 3' | 'Tesla Model Y';
+export type Model = 'Tesla Model 3' | 'Tesla Model Y'
 
 export interface LocalizedString {
-  en: string;
-  ar: string;
+  en: string
+  ar: string
 }
 
 export interface CTAConfig {
-  label: LocalizedString;
-  variant?: Variant;
-  model?: Model;
-  placement: string;
+  label: LocalizedString
+  variant?: Variant
+  model?: Model
+  placement: string
 }
 
 export interface WhatsAppParams {
-  category?: Category;
-  variant?: Variant;
-  model?: Model;
-  city?: string;
-  utm_source?: string;
-  utm_campaign?: string;
-  message?: string;
+  category?: Category
+  variant?: Variant
+  model?: Model
+  city?: string
+  utm_source?: string
+  utm_campaign?: string
+  message?: string
 }
 
 export interface ProductVariant {
-  name: string;
-  price: number;
-  images: string[];
-  description: LocalizedString;
+  name: string
+  price: number
+  images: string[]
+  description: LocalizedString
 }
 
 export interface TestimonialItem {
-  quote: LocalizedString;
-  author: LocalizedString;
-  role: LocalizedString;
+  quote: LocalizedString
+  author: LocalizedString
+  role: LocalizedString
 }
 
 export interface FAQItem {
-  q: LocalizedString;
-  a: LocalizedString;
+  q: LocalizedString
+  a: LocalizedString
 }
-

@@ -1,41 +1,43 @@
-'use client';
+'use client'
 
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { useLanguage } from '../LanguageContext';
-import type { Locale } from '@/app/types';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { useLanguage } from '../LanguageContext'
+import type { Locale } from '@/app/types'
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale } = useLanguage();
+  const { locale, setLocale } = useLanguage()
 
-  const handleChange = (_event: React.MouseEvent<HTMLElement>, newLocale: Locale | null) => {
+  const handleChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    newLocale: Locale | null
+  ) => {
     if (newLocale !== null) {
-      setLocale(newLocale);
+      setLocale(newLocale)
     }
-  };
+  }
 
   return (
     <ToggleButtonGroup
       value={locale}
       exclusive
       onChange={handleChange}
-      size="small"
+      size='small'
       sx={{
         '& .MuiToggleButton-root': {
           color: 'text.secondary',
-          borderColor: (theme) => theme.palette.text.primary + '3D', // 23% opacity
+          borderColor: theme => theme.palette.text.primary + '3D', // 23% opacity
           '&.Mui-selected': {
             color: 'primary.main',
-            backgroundColor: (theme) => theme.palette.primary.main + '14', // 8% opacity
+            backgroundColor: theme => theme.palette.primary.main + '14', // 8% opacity
             '&:hover': {
-              backgroundColor: (theme) => theme.palette.primary.main + '29', // 16% opacity
-            },
-          },
-        },
+              backgroundColor: theme => theme.palette.primary.main + '29' // 16% opacity
+            }
+          }
+        }
       }}
     >
-      <ToggleButton value="en">EN</ToggleButton>
-      <ToggleButton value="ar">AR</ToggleButton>
+      <ToggleButton value='en'>EN</ToggleButton>
+      <ToggleButton value='ar'>AR</ToggleButton>
     </ToggleButtonGroup>
-  );
+  )
 }
-

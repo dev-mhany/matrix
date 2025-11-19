@@ -12,14 +12,28 @@ Located at the top of `theme.ts`, the `tokens` object contains all design values
 
 ```typescript
 const tokens = {
-  colors: { /* All brand colors */ },
-  shadows: { /* Shadow and glow effects */ },
-  radius: { /* Border radius values */ },
-  spacing: { /* Spacing multipliers */ },
-  gradients: { /* Gradient definitions */ },
-  transitions: { /* Animation timings */ },
-  zIndex: { /* Layer stacking */ },
-};
+  colors: {
+    /* All brand colors */
+  },
+  shadows: {
+    /* Shadow and glow effects */
+  },
+  radius: {
+    /* Border radius values */
+  },
+  spacing: {
+    /* Spacing multipliers */
+  },
+  gradients: {
+    /* Gradient definitions */
+  },
+  transitions: {
+    /* Animation timings */
+  },
+  zIndex: {
+    /* Layer stacking */
+  }
+}
 ```
 
 ### 2. MUI Theme
@@ -28,13 +42,19 @@ The tokens are integrated into the MUI theme and exported:
 
 ```typescript
 const theme = createTheme({
-  palette: { /* Using tokens.colors */ },
-  typography: { /* Font definitions */ },
-  components: { /* Component overrides */ },
-});
+  palette: {
+    /* Using tokens.colors */
+  },
+  typography: {
+    /* Font definitions */
+  },
+  components: {
+    /* Component overrides */
+  }
+})
 
 // Tokens attached to theme for easy access
-theme.tokens = tokens;
+theme.tokens = tokens
 ```
 
 ## Usage in Components
@@ -48,7 +68,7 @@ import { useTheme } from '@mui/material';
 
 export default function MyComponent() {
   const theme = useTheme();
-  
+
   return (
     <Box
       sx={{
@@ -106,10 +126,10 @@ secondaryLight: '#FF8E8E'
 secondaryDark: '#E74C3C'
 
 // Background Colors
-bgDark: '#0B0D10'        // Main background
-bgPaper: '#1A1D23'       // Card/paper background
-bgLighter: '#2A2D33'     // Lighter backgrounds
-bgLightest: '#3A3D43'    // Lightest backgrounds
+bgDark: '#0B0D10' // Main background
+bgPaper: '#1A1D23' // Card/paper background
+bgLighter: '#2A2D33' // Lighter backgrounds
+bgLightest: '#3A3D43' // Lightest backgrounds
 
 // Text Colors
 textPrimary: '#FFFFFF'
@@ -123,8 +143,8 @@ error: '#EF4444'
 info: '#3B82F6'
 
 // Accent Colors
-accent1: '#FFB347'       // Warm orange
-accent2: '#4A4D53'       // Neutral gray
+accent1: '#FFB347' // Warm orange
+accent2: '#4A4D53' // Neutral gray
 ```
 
 ### Shadows (`theme.tokens.shadows`)
@@ -152,10 +172,10 @@ cardHover: '0 12px 28px rgba(0, 0, 0, 0.3)'
 ```typescript
 xs: '4px'
 sm: '8px'
-md: '12px'    // Default for cards
+md: '12px' // Default for cards
 lg: '16px'
 xl: '20px'
-round: '50%'  // For circular elements
+round: '50%' // For circular elements
 ```
 
 ### Gradients (`theme.tokens.gradients`)
@@ -184,7 +204,7 @@ easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
 header: 1100
 drawer: 1200
 modal: 1300
-floating: 1000    // Floating WhatsApp button
+floating: 1000 // Floating WhatsApp button
 overlay: 999
 ```
 
@@ -263,29 +283,29 @@ For adding opacity to hex colors in `sx` props:
 
 ```typescript
 // 10% opacity
-backgroundColor: (theme) => theme.palette.primary.main + '1A'
+backgroundColor: theme => theme.palette.primary.main + '1A'
 
 // 23% opacity (for borders)
-borderColor: (theme) => theme.palette.text.primary + '3D'
+borderColor: theme => theme.palette.text.primary + '3D'
 
 // 8% opacity
-backgroundColor: (theme) => theme.palette.primary.main + '14'
+backgroundColor: theme => theme.palette.primary.main + '14'
 
 // 16% opacity
-backgroundColor: (theme) => theme.palette.primary.main + '29'
+backgroundColor: theme => theme.palette.primary.main + '29'
 ```
 
 ### Opacity Conversion Table
 
-| Opacity | Hex | Example |
-|---------|-----|---------|
-| 5% | 0D | `color + '0D'` |
-| 8% | 14 | `color + '14'` |
-| 10% | 1A | `color + '1A'` |
-| 16% | 29 | `color + '29'` |
-| 23% | 3D | `color + '3D'` |
-| 50% | 80 | `color + '80'` |
-| 75% | BF | `color + 'BF'` |
+| Opacity | Hex | Example        |
+| ------- | --- | -------------- |
+| 5%      | 0D  | `color + '0D'` |
+| 8%      | 14  | `color + '14'` |
+| 10%     | 1A  | `color + '1A'` |
+| 16%     | 29  | `color + '29'` |
+| 23%     | 3D  | `color + '3D'` |
+| 50%     | 80  | `color + '80'` |
+| 75%     | BF  | `color + 'BF'` |
 
 ## Modifying the Theme
 
@@ -297,9 +317,9 @@ Edit `app/theme/theme.ts`:
 const tokens = {
   colors: {
     // ... existing colors
-    newColor: '#HEXCODE',
-  },
-};
+    newColor: '#HEXCODE'
+  }
+}
 ```
 
 ### Adding New Gradients
@@ -325,9 +345,9 @@ shadows: {
 The theme is fully typed. TypeScript will autocomplete all token properties:
 
 ```typescript
-theme.tokens.colors.primary      // ✅ Autocomplete works
-theme.tokens.shadows.glowMd      // ✅ Autocomplete works
-theme.tokens.gradients.primary   // ✅ Autocomplete works
+theme.tokens.colors.primary // ✅ Autocomplete works
+theme.tokens.shadows.glowMd // ✅ Autocomplete works
+theme.tokens.gradients.primary // ✅ Autocomplete works
 ```
 
 ## CSS Animations
@@ -358,6 +378,7 @@ When adding new components:
 ## Examples from Codebase
 
 See these files for real-world examples:
+
 - `app/components/sections/Hero.tsx` - Gradients and badges
 - `app/components/sections/Header.tsx` - Logo gradient
 - `app/components/shared/WhatsAppButton.tsx` - Glow effects
@@ -368,4 +389,3 @@ See these files for real-world examples:
 
 **Last Updated**: January 2025  
 **Theme Version**: 1.0.0
-

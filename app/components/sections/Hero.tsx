@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Container, Typography, Stack, Chip, useTheme } from '@mui/material';
+import { Box, Container, Typography, useTheme } from '@mui/material';
 import WhatsAppButton from '../shared/WhatsAppButton';
 import { useLanguage } from '../LanguageContext';
 import { content } from '@/app/lib/content';
@@ -8,10 +8,6 @@ import { content } from '@/app/lib/content';
 export default function Hero() {
   const { locale } = useLanguage();
   const theme = useTheme();
-
-  const scrollToVideo = () => {
-    document.getElementById('video')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <Box
@@ -57,43 +53,6 @@ export default function Hero() {
             pt: { xs: 8, md: 0 },
           }}
         >
-          {/* Trust Badges */}
-          <Stack
-            direction="row"
-            spacing={2}
-            justifyContent="center"
-            flexWrap="wrap"
-            sx={{ mb: 4 }}
-          >
-            <Chip
-              label={content.hero.badges.freeDelivery[locale]}
-              sx={{
-                backgroundColor: (theme) => theme.palette.primary.main + '1A', // 10% opacity
-                color: 'primary.main',
-                fontWeight: 600,
-                fontSize: '0.9rem',
-              }}
-            />
-            <Chip
-              label={content.hero.badges.easyInstall[locale]}
-              sx={{
-                backgroundColor: (theme) => theme.palette.primary.main + '1A',
-                color: 'primary.main',
-                fontWeight: 600,
-                fontSize: '0.9rem',
-              }}
-            />
-            <Chip
-              label={content.hero.badges.customizable[locale]}
-              sx={{
-                backgroundColor: (theme) => theme.palette.primary.main + '1A',
-                color: 'primary.main',
-                fontWeight: 600,
-                fontSize: '0.9rem',
-              }}
-            />
-          </Stack>
-
           {/* Headline */}
             <Typography
               variant="h1"
@@ -123,42 +82,16 @@ export default function Hero() {
           </Typography>
 
           {/* CTAs */}
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            spacing={2}
-            justifyContent="center"
-          >
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <WhatsAppButton
+              category="tesla"
               placement="hero-primary"
               size="large"
               isPrimary
               showText
               customText={locale === 'en' ? 'Order Now' : 'اطلب الآن'}
             />
-            <Box
-              component="button"
-              onClick={scrollToVideo}
-              sx={{
-                px: 4,
-                py: 1.5,
-                fontSize: '1rem',
-                fontWeight: 600,
-                color: 'text.primary',
-                backgroundColor: 'transparent',
-                border: '2px solid',
-                borderColor: (theme) => theme.palette.text.primary + '3D', // 23% opacity
-                borderRadius: theme.tokens.radius.md,
-                cursor: 'pointer',
-                transition: `all ${theme.tokens.transitions.normal} ${theme.tokens.transitions.easing}`,
-                '&:hover': {
-                  borderColor: 'primary.main',
-                  backgroundColor: (theme) => theme.palette.primary.main + '14', // 8% opacity
-                },
-              }}
-            >
-              {content.hero.secondaryCta[locale]}
-            </Box>
-          </Stack>
+          </Box>
         </Box>
       </Container>
     </Box>

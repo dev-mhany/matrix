@@ -1,5 +1,7 @@
 export type Locale = 'en' | 'ar';
 
+export type Category = 'tesla' | 'jetour' | 'leopard';
+
 export type Variant = 'Matte Black' | 'Gloss White' | 'Carbon Fiber Edition';
 
 export type Model = 'Tesla Model 3' | 'Tesla Model Y';
@@ -17,6 +19,7 @@ export interface CTAConfig {
 }
 
 export interface WhatsAppParams {
+  category?: Category;
   variant?: Variant;
   model?: Model;
   city?: string;
@@ -26,7 +29,7 @@ export interface WhatsAppParams {
 }
 
 export interface ProductVariant {
-  name: Variant;
+  name: string;
   price: number;
   images: string[];
   description: LocalizedString;

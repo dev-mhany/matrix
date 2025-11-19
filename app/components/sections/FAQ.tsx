@@ -65,6 +65,7 @@ export default function FAQ() {
         {/* Bottom CTA */}
         <Box sx={{ textAlign: 'center', mt: 6 }}>
           <WhatsAppButton
+            category="tesla"
             placement="faq-bottom"
             size="large"
             isPrimary

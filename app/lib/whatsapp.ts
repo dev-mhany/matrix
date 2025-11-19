@@ -5,10 +5,19 @@ export function generateWhatsAppURL(
   params: WhatsAppParams
 ): string {
   // Use custom message if provided, otherwise use default template
-  let message = params.message || `Hi Matrix! I'm interested in AeroCovers V2 for my Tesla.`;
+  let message = params.message || `Hi Matrix! I'm interested in your products.`;
 
   // Only add details if they are actually provided and no custom message
   if (!params.message) {
+    if (params.category) {
+      const categoryNames: Record<string, string> = {
+        tesla: 'Tesla AeroCovers',
+        jetour: 'JETOUR T3 Accessories',
+        leopard: 'Leopard Accessories',
+      };
+      message = `Hi Matrix! I'm interested in ${categoryNames[params.category] || params.category}.`;
+    }
+
     if (params.variant) {
       message += `\n\nVariant: ${params.variant}`;
     }

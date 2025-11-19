@@ -4,9 +4,10 @@ import { Button, useTheme } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { generateWhatsAppURL, getUTMParams } from '@/app/lib/whatsapp';
 import { trackWhatsAppClick } from '@/app/components/analytics/GTMEvents';
-import type { Variant, Model } from '@/app/types';
+import type { Category, Variant, Model } from '@/app/types';
 
 interface WhatsAppButtonProps {
+  category?: Category;
   variant?: Variant;
   model?: Model;
   placement?: string;
@@ -20,6 +21,7 @@ interface WhatsAppButtonProps {
 }
 
 export default function WhatsAppButton({
+  category,
   variant,
   model,
   placement = 'default',
@@ -38,6 +40,7 @@ export default function WhatsAppButton({
     const { utm_source, utm_campaign } = getUTMParams();
 
     const url = generateWhatsAppURL(phone, {
+      category,
       variant,
       model,
       utm_source,

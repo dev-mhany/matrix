@@ -5,6 +5,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import WhatsAppButton from '../shared/WhatsAppButton';
 import { useLanguage } from '../LanguageContext';
 import { content, variants } from '@/app/lib/content';
+import type { Variant } from '@/app/types';
 
 export default function Pricing() {
   const { locale } = useLanguage();
@@ -118,7 +119,8 @@ export default function Pricing() {
 
                   {/* CTA */}
                   <WhatsAppButton
-                    variant={variant.name}
+                    category="tesla"
+                    variant={variant.name as Variant}
                     placement={`pricing-${index}`}
                     size="large"
                     fullWidth

@@ -52,6 +52,7 @@ export default function FinalCTA() {
           </Typography>
 
           <WhatsAppButton
+            category="tesla"
             placement="final-cta"
             size="large"
             isPrimary

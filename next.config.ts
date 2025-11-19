@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
         hostname: 'placehold.co',
       },
     ],
+    // Allow local images from public folder
+    unoptimized: false,
   },
   // Enable React strict mode for better development experience
   reactStrictMode: true,

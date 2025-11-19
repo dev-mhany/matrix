@@ -140,6 +140,7 @@ export default function ProductShowcase() {
 
               {/* CTA */}
               <WhatsAppButton
+                category="tesla"
                 variant={activeVariant}
                 model={selectedModel}
                 placement="product-showcase"

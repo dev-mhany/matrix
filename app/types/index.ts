@@ -1,10 +1,9 @@
 export type Locale = 'en' | 'ar'
 
-export type Category = 'tesla' | 'jetour' | 'leopard'
-
-export type Variant = 'Matte Black' | 'Gloss White' | 'Carbon Fiber Edition'
-
-export type Model = 'Tesla Model 3' | 'Tesla Model Y'
+// Dynamic catalog relies on Firestore, so keep these aliases flexible
+export type Category = string
+export type Variant = string
+export type Model = string
 
 export interface LocalizedString {
   en: string
@@ -29,10 +28,19 @@ export interface WhatsAppParams {
 }
 
 export interface ProductVariant {
+  id?: string
   name: string
   price: number
   images: string[]
   description: LocalizedString
+  categoryId?: string
+  carTypeIds?: string[]
+  order?: number
+}
+
+export interface FirestoreProduct extends ProductVariant {
+  categoryId: string
+  carTypeIds?: string[]
 }
 
 export interface TestimonialItem {
@@ -44,4 +52,83 @@ export interface TestimonialItem {
 export interface FAQItem {
   q: LocalizedString
   a: LocalizedString
+}
+
+export interface FirestoreCarType {
+  id?: string
+  categoryId: string
+  name: LocalizedString
+  description?: LocalizedString
+  order?: number
+}
+
+export interface CategoryFeature {
+  icon?: string
+  title: LocalizedString
+  description: LocalizedString
+}
+
+export interface CategoryLifestyleImage {
+  src: string
+  title?: LocalizedString
+  description?: LocalizedString
+}
+
+export interface CategoryLifestyleContent {
+  title: LocalizedString
+  subtitle: LocalizedString
+  images?: CategoryLifestyleImage[]
+}
+
+export interface CategoryPricingContent {
+  title: LocalizedString
+  subtitle: LocalizedString
+  note?: LocalizedString
+  currency: LocalizedString
+  features?: LocalizedString[]
+}
+
+export interface CategoryTestimonialsContent {
+  title: LocalizedString
+  items: TestimonialItem[]
+}
+
+export interface CategoryFAQContent {
+  title: LocalizedString
+  items: FAQItem[]
+  bottomCta?: LocalizedString
+}
+
+export interface CategoryFinalCTAContent {
+  headline: LocalizedString
+  subheadline: LocalizedString
+  cta: LocalizedString
+}
+
+export interface FirestoreCategory {
+  id?: string
+  slug: string
+  name: LocalizedString
+  description: LocalizedString
+  image?: string
+  hero: {
+    headline: LocalizedString
+    subheadline: LocalizedString
+    backgroundImage?: string
+  }
+  productShowcase: {
+    title: LocalizedString
+    subtitle: LocalizedString
+    currency: LocalizedString
+    modelPickerLabel?: LocalizedString
+  }
+  features: {
+    title: LocalizedString
+    items: CategoryFeature[]
+  }
+  lifestyle: CategoryLifestyleContent
+  pricing: CategoryPricingContent
+  testimonials: CategoryTestimonialsContent
+  faq: CategoryFAQContent
+  finalCta: CategoryFinalCTAContent
 }

@@ -135,7 +135,7 @@ export default function CategoryPricing({
                   {/* CTA */}
                   <WhatsAppButton
                     category={category}
-                    variant={category === 'tesla' ? (variant.name as any) : undefined}
+                    variant={category === 'tesla' ? variant.name : undefined}
                     placement={`pricing-${index}`}
                     size='large'
                     fullWidth

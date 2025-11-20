@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import {
   Box,
   Container,
@@ -17,25 +17,77 @@ import {
 } from '@mui/material'
 import WhatsAppButton from '../shared/WhatsAppButton'
 import { useLanguage } from '../LanguageContext'
-import { content, variants } from '@/app/lib/content'
 import { trackVariantSelected, trackModelSelected } from '../analytics/GTMEvents'
-import type { Variant, Model } from '@/app/types'
+import type {
+  Category,
+  FirestoreCarType,
+  LocalizedString,
+  ProductVariant
+} from '@/app/types'
 
-export default function ProductShowcase() {
+interface ProductShowcaseProps {
+  title: LocalizedString
+  subtitle: LocalizedString
+  currency: LocalizedString
+  modelPickerLabel?: LocalizedString
+  variants: ProductVariant[]
+  carTypes: FirestoreCarType[]
+  category?: Category
+}
+
+const getCarTypeValue = (carType?: FirestoreCarType) =>
+  carType?.name?.en || carType?.name?.ar || ''
+
+export default function ProductShowcase({
+  title,
+  subtitle,
+  currency,
+  modelPickerLabel,
+  variants,
+  carTypes,
+  category = 'tesla'
+}: ProductShowcaseProps) {
   const { locale } = useLanguage()
-  const [activeVariant, setActiveVariant] = useState<Variant>('Matte Black')
-  const [selectedModel, setSelectedModel] = useState<Model>('Tesla Model 3')
+  const [selectedVariantName, setSelectedVariantName] = useState<string>('')
+  const [selectedModelName, setSelectedModelName] = useState<string>('')
 
-  const activeVariantData = variants.find(v => v.name === activeVariant)
+  const activeVariantName = useMemo(() => {
+    if (variants.some(variant => variant.name === selectedVariantName)) {
+      return selectedVariantName
+    }
+    return variants[0]?.name ?? ''
+  }, [variants, selectedVariantName])
 
-  const handleVariantChange = (_event: React.SyntheticEvent, newValue: Variant) => {
-    setActiveVariant(newValue)
+  const activeVariantData = useMemo(
+    () => variants.find(v => v.name === activeVariantName),
+    [variants, activeVariantName]
+  )
+
+  const modelOptions = useMemo(
+    () =>
+      carTypes.map(carType => ({
+        id: carType.id,
+        value: getCarTypeValue(carType),
+        label: carType.name
+      })),
+    [carTypes]
+  )
+
+  const activeModelName = useMemo(() => {
+    if (modelOptions.some(option => option.value === selectedModelName)) {
+      return selectedModelName
+    }
+    return modelOptions[0]?.value || ''
+  }, [modelOptions, selectedModelName])
+
+  const handleVariantChange = (_event: React.SyntheticEvent, newValue: string) => {
+    setSelectedVariantName(newValue)
     trackVariantSelected(newValue)
   }
 
   const handleModelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newModel = event.target.value as Model
-    setSelectedModel(newModel)
+    const newModel = event.target.value
+    setSelectedModelName(newModel)
     trackModelSelected(newModel)
   }
 
@@ -48,32 +100,34 @@ export default function ProductShowcase() {
         {/* Title */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant='h2' gutterBottom>
-            {content.productShowcase.title[locale]}
+            {title[locale]}
           </Typography>
           <Typography variant='h6' color='text.secondary'>
-            {content.productShowcase.subtitle[locale]}
+            {subtitle[locale]}
           </Typography>
         </Box>
 
         {/* Variant Tabs */}
-        <Tabs
-          value={activeVariant}
-          onChange={handleVariantChange}
-          centered
-          sx={{
-            mb: 4,
-            '& .MuiTab-root': {
-              fontSize: '1rem',
-              fontWeight: 600,
-              textTransform: 'none',
-              minWidth: { xs: 100, md: 150 }
-            }
-          }}
-        >
-          {variants.map(v => (
-            <Tab key={v.name} label={v.name} value={v.name} />
-          ))}
-        </Tabs>
+        {variants.length > 1 && (
+          <Tabs
+            value={activeVariantName}
+            onChange={handleVariantChange}
+            centered
+            sx={{
+              mb: 4,
+              '& .MuiTab-root': {
+                fontSize: '1rem',
+                fontWeight: 600,
+                textTransform: 'none',
+                minWidth: { xs: 100, md: 150 }
+              }
+            }}
+          >
+            {variants.map(v => (
+              <Tab key={v.name} label={v.name} value={v.name} />
+            ))}
+          </Tabs>
+        )}
 
         <Grid container spacing={4} alignItems='center'>
           {/* Images */}
@@ -93,7 +147,7 @@ export default function ProductShowcase() {
                     <CardMedia
                       component='img'
                       image={image}
-                      alt={`${activeVariant} - Image ${index + 1}`}
+                      alt={`${activeVariantName} - Image ${index + 1}`}
                       sx={{
                         width: '100%',
                         height: index === 0 ? 400 : 250,
@@ -112,11 +166,10 @@ export default function ProductShowcase() {
               {/* Variant Description */}
               <Box>
                 <Typography variant='h4' gutterBottom color='text.primary'>
-                  {activeVariant}
+                  {activeVariantData?.name}
                 </Typography>
                 <Typography variant='h5' color='primary.main' gutterBottom>
-                  {content.pricing.currency[locale]}{' '}
-                  {activeVariantData?.price.toLocaleString()}
+                  {currency[locale]} {activeVariantData?.price.toLocaleString()}
                 </Typography>
                 <Typography variant='body1' color='text.secondary' sx={{ mb: 2 }}>
                   {activeVariantData?.description[locale]}
@@ -124,29 +177,29 @@ export default function ProductShowcase() {
               </Box>
 
               {/* Model Picker */}
-              <Box>
-                <Typography variant='h6' gutterBottom color='text.primary'>
-                  {content.productShowcase.modelPicker.label[locale]}
-                </Typography>
-                <RadioGroup value={selectedModel} onChange={handleModelChange}>
-                  <FormControlLabel
-                    value='Tesla Model 3'
-                    control={<Radio />}
-                    label='Tesla Model 3'
-                  />
-                  <FormControlLabel
-                    value='Tesla Model Y'
-                    control={<Radio />}
-                    label='Tesla Model Y'
-                  />
-                </RadioGroup>
-              </Box>
+              {carTypes.length > 0 && (
+                <Box>
+                  <Typography variant='h6' gutterBottom color='text.primary'>
+                    {modelPickerLabel ? modelPickerLabel[locale] : 'Select Your Model'}
+                  </Typography>
+                  <RadioGroup value={activeModelName} onChange={handleModelChange}>
+                    {modelOptions.map(option => (
+                      <FormControlLabel
+                        key={option.id ?? option.value}
+                        value={option.value}
+                        control={<Radio />}
+                        label={option.label[locale]}
+                      />
+                    ))}
+                  </RadioGroup>
+                </Box>
+              )}
 
               {/* CTA */}
               <WhatsAppButton
-                category='tesla'
-                variant={activeVariant}
-                model={selectedModel}
+                category={category}
+                variant={activeVariantName}
+                model={activeModelName}
                 placement='product-showcase'
                 size='large'
                 fullWidth

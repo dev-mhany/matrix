@@ -17,20 +17,28 @@ import {
   Chip,
   Button,
   IconButton,
-  Stack
+  Stack,
+  Skeleton
 } from '@mui/material'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { useLanguage } from './components/LanguageContext'
-import { mainPage, categories } from './lib/content'
+import { mainPage } from './lib/content'
+import { useFirestoreCollection } from './hooks/useFirestoreCollection'
+import { orderedCategoriesQuery } from './lib/firestore'
+import type { FirestoreCategory } from './types'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Home() {
   const { locale } = useLanguage()
   const theme = useTheme()
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const carouselImages = mainPage.hero.carouselImages
+  const {
+    data: dynamicCategories,
+    loading: categoriesLoading,
+    error: categoriesError
+  } = useFirestoreCollection<FirestoreCategory>(orderedCategoriesQuery)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -390,30 +398,29 @@ export default function Home() {
           </Box>
 
           <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <CategoryCard
-                title={categories.tesla.name}
-                description={categories.tesla.description}
-                image={categories.tesla.image}
-                href={categories.tesla.href}
-              />
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <CategoryCard
-                title={categories.jetour.name}
-                description={categories.jetour.description}
-                image={categories.jetour.image}
-                href={categories.jetour.href}
-              />
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <CategoryCard
-                title={categories.leopard.name}
-                description={categories.leopard.description}
-                image={categories.leopard.image}
-                href={categories.leopard.href}
-              />
-            </Grid>
+            {categoriesLoading && <CategoryCardSkeletonGrid />}
+
+            {!categoriesLoading &&
+              dynamicCategories.map(category => (
+                <Grid item xs={12} md={4} key={category.slug}>
+                  <CategoryCard
+                    title={category.name}
+                    description={category.description}
+                    image={category.image || '/images/gallery/product-main-white.jpg'}
+                    href={`/${category.slug}`}
+                  />
+                </Grid>
+              ))}
+
+            {!categoriesLoading && dynamicCategories.length === 0 && (
+              <Grid item xs={12}>
+                <Typography textAlign='center' color='text.secondary'>
+                  {categoriesError
+                    ? 'Unable to load categories right now.'
+                    : 'No categories available yet. Please check back soon.'}
+                </Typography>
+              </Grid>
+            )}
           </Grid>
         </Container>
       </Box>
@@ -494,6 +501,21 @@ export default function Home() {
 
       <Footer />
       <FloatingWhatsApp />
+    </>
+  )
+}
+
+function CategoryCardSkeletonGrid() {
+  return (
+    <>
+      {[0, 1, 2].map(index => (
+        <Grid item xs={12} md={4} key={index}>
+          <Skeleton variant='rectangular' height={380} sx={{ borderRadius: 3, mb: 2 }} />
+          <Skeleton variant='text' height={40} />
+          <Skeleton variant='text' height={20} width='80%' />
+          <Skeleton variant='rectangular' height={48} sx={{ borderRadius: 2, mt: 2 }} />
+        </Grid>
+      ))}
     </>
   )
 }

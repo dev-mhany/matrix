@@ -1,24 +1,37 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { Fab, Zoom, useTheme } from '@mui/material'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp'
 import { usePathname } from 'next/navigation'
 import { generateWhatsAppURL, getUTMParams } from '@/app/lib/whatsapp'
 import { trackWhatsAppClick } from '@/app/components/analytics/GTMEvents'
 import type { Category } from '@/app/types'
+import { useFirestoreCollection } from '@/app/hooks/useFirestoreCollection'
+import { orderedCategoriesQuery } from '@/app/lib/firestore'
+import { categories as fallbackCategories } from '@/app/lib/content'
 
 export default function FloatingWhatsApp() {
   const theme = useTheme()
   const pathname = usePathname()
   const [visible, setVisible] = useState(false)
   const phone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '971501234567'
+  const { data: firestoreCategories } = useFirestoreCollection(orderedCategoriesQuery)
+
+  const categorySlugs = useMemo(() => {
+    if (firestoreCategories.length) {
+      return new Set(firestoreCategories.map(category => category.slug))
+    }
+    return new Set(Object.keys(fallbackCategories))
+  }, [firestoreCategories])
 
   // Detect category from pathname
   const getCategory = (): Category | undefined => {
-    if (pathname?.startsWith('/tesla')) return 'tesla'
-    if (pathname?.startsWith('/jetour')) return 'jetour'
-    if (pathname?.startsWith('/leopard')) return 'leopard'
+    if (!pathname) return undefined
+    const segment = pathname.split('/').filter(Boolean)[0]
+    if (segment && categorySlugs.has(segment)) {
+      return segment
+    }
     return undefined
   }
 

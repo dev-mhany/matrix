@@ -91,7 +91,8 @@ E:\matrix\
 │   └── animations.css          # CSS animation classes
 ├── public/
 │   └── images/                 # Placeholder images (SVG)
-├── .env.local                  # Environment variables (GTM ID, WhatsApp phone)
+├── env.local.example           # Sample env vars (Firebase, GTM, WhatsApp)
+├── .env.local                  # Your local secrets (not committed)
 ├── next.config.ts              # Next.js configuration
 ├── package.json                # Dependencies
 ├── tsconfig.json               # TypeScript configuration
@@ -103,7 +104,8 @@ E:\matrix\
 
 ### Prerequisites
 
-- Node.js 18+ and Yarn installed
+- Node.js 18+
+- Yarn **or** npm
 
 ### Installation
 
@@ -111,20 +113,29 @@ E:\matrix\
 
    ```bash
    yarn install
+   # or
+   npm install
    ```
 
 2. **Configure environment variables**:
 
-   Update `.env.local` with your values:
+   Copy `env.local.example` to `.env.local` (do not commit the real values) and fill in:
 
    ```env
-   # Google Tag Manager ID (for analytics tracking)
-   NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+   NEXT_PUBLIC_FIREBASE_API_KEY=...
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+   NEXT_PUBLIC_FIREBASE_APP_ID=...
+   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=...
 
-   # WhatsApp Business Phone Number (E.164 format without +)
-   # Example: 971501234567 for UAE number +971 50 123 4567
+   # Optional analytics + WhatsApp lead routing
+   NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
    NEXT_PUBLIC_WHATSAPP_PHONE=971501234567
    ```
+
+   Make sure the Firebase project has Email/Password auth enabled and Firestore rules that allow the admin user to manage catalog data.
 
 3. **Replace placeholder images**:
 
@@ -138,9 +149,65 @@ E:\matrix\
 
    ```bash
    yarn dev
+   # or
+   npm run dev
    ```
 
    Open [http://localhost:3000](http://localhost:3000)
+
+## 🔥 Firebase & Firestore
+
+1. **Enable Firebase services**
+   - Authentication → Email/Password (used by `/admin`)
+   - Cloud Firestore → production rules so only signed-in admins can write
+   - Cloud Storage → store product imagery uploaded from the admin dashboard
+2. **Collections**
+   - `categories`: localized hero + section content (`name`, `description`, `hero`, `productShowcase`, `features`, `lifestyle`, `pricing`, `testimonials`, `faq`, `finalCta`)
+   - `products`: variant cards (`name`, `price`, `images`, `description`, `categoryId`, `carTypeIds`, `order`)
+   - `carTypes`: localized car/model names tied to each `categoryId`
+3. **Environment variables**
+   - Duplicate `env.local.example` → `.env.local`
+   - Paste all Firebase web config keys + WhatsApp phone + optional GTM ID
+
+## 🛡️ Admin Portal
+
+- Route: `/admin`
+- Auth: Firebase Email/Password (same project as public site)
+- Features:
+  - Live view of `categories`, `carTypes`, and `products`
+  - JSON editors with validation + success/error messaging
+  - Create/Delete buttons for each collection
+- Tips:
+  - Keep localized strings (`en`/`ar`) in every object to avoid runtime gaps
+  - `id` fields are read-only (managed by Firestore)
+  - **Adding a new model**
+    1. Create a category with a unique slug (the form shows the resulting public URL).
+    2. Fill in all localized sections (hero, features, lifestyle, pricing, testimonials, FAQ, final CTA).
+    3. (Optional) Add car types/models tied to that category to enable the Tesla-style model picker.
+    4. Add products, assign them to the category, choose supported car types, and upload images directly (files land in Firebase Storage automatically).
+    5. Visit `/${slug}` to view the new landing page (legacy `/tesla`, `/jetour`, `/leopard` routes still load for backward compatibility).
+
+## 📥 Firestore Seeding
+
+Use the provided Admin SDK credentials to re-create the legacy content in Firestore:
+
+```bash
+# 1. Export your Admin credentials as env vars (PowerShell example)
+$env:FIREBASE_PROJECT_ID="halls-v1"
+$env:FIREBASE_CLIENT_EMAIL="firebase-adminsdk-fbsvc@halls-v1.iam.gserviceaccount.com"
+$env:FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+
+# 2. Run the seed script (uses app/lib/content.ts data)
+npm run seed:firestore
+```
+
+The script (`scripts/seedFirestore.ts`) upserts the `tesla`, `jetour`, and `leopard` categories plus their products/car types. It is idempotent, so rerunning it simply updates the existing docs.
+  - **Adding a new model**
+    1. Create a category with a unique slug (the form shows the public link).
+    2. Add localized hero/feature/pricing/testimonial/FAQ content.
+    3. (Optional) Add car types/models tied to that category so the Tesla-style model picker appears.
+    4. Add products, assign them to the category, select supported car types, and upload media.
+    5. Visit `/${slug}` to view the new landing page (legacy `/tesla`, `/jetour`, `/leopard` routes still work).
 
 ## 🧪 Testing & Validation
 
@@ -168,6 +235,20 @@ npx tsc --noEmit
 yarn lint && yarn build
 ```
 
+## ✅ Functional Testing Checklist
+
+1. **Home page**
+   - Category cards render from Firestore (remove/add a category to verify live updates).
+2. **Dynamic category pages (`/${slug}`)**
+   - Visit `/tesla` (legacy slug) and any newly created slug to ensure hero, showcases, pricing, testimonials, FAQs, and CTAs render from Firestore.
+   - For Tesla-style models, confirm car-type radios and WhatsApp CTAs populate the selected model/variant.
+3. **Admin portal (`/admin`)**
+   - Sign in with a Firebase Email/Password user.
+   - Create/update/delete categories, car types, and products via the new form-based editors.
+   - Upload multiple product images; verify they appear in Storage and on the public page immediately.
+4. **WhatsApp CTAs**
+   - Buttons still open WhatsApp with variant/model metadata populated.
+
 ## 🌐 Routes
 
 | Route       | Description                             |
@@ -179,6 +260,8 @@ yarn lint && yarn build
 | `/returns`  | Returns and refunds policy              |
 | `/terms`    | Terms of service                        |
 | `/privacy`  | Privacy policy and data handling        |
+| `/admin`    | Firebase-authenticated catalog manager  |
+| `/[category]` | Dynamic category/model landing page   |
 
 ## 🎨 Animation Classes
 

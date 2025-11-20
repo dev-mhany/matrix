@@ -54,7 +54,7 @@ export default function FeatureGridExample() {
             Engineered for Performance
           </h2>
           <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
-            Every detail designed to enhance your Tesla's efficiency and style
+            Every detail designed to enhance your Tesla&apos;s efficiency and style
           </p>
         </div>
 

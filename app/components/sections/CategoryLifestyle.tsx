@@ -4,16 +4,16 @@ import { Box, Container, Typography, Grid, Card, useTheme } from '@mui/material'
 import Image from 'next/image'
 import WhatsAppButton from '../shared/WhatsAppButton'
 import { useLanguage } from '../LanguageContext'
-import type { Category } from '@/app/types'
+import type { Category, LocalizedString } from '@/app/types'
 
 interface CategoryLifestyleProps {
-  title: { en: string; ar: string }
-  subtitle: { en: string; ar: string }
+  title: LocalizedString
+  subtitle: LocalizedString
   category: Category
   images: Array<{
     src: string
-    title: { en: string; ar: string }
-    description: { en: string; ar: string }
+    title?: LocalizedString
+    description?: LocalizedString
   }>
 }
 
@@ -58,7 +58,7 @@ export default function CategoryLifestyle({
               >
                 <Image
                   src={img.src}
-                  alt={img.title[locale]}
+                  alt={img.title?.[locale] || 'Lifestyle image'}
                   fill
                   style={{ objectFit: 'cover' }}
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
@@ -73,12 +73,16 @@ export default function CategoryLifestyle({
                     p: 3
                   }}
                 >
-                  <Typography variant='h5' fontWeight={700}>
-                    {img.title[locale]}
-                  </Typography>
-                  <Typography variant='body2' color='text.secondary'>
-                    {img.description[locale]}
-                  </Typography>
+                  {img.title && (
+                    <Typography variant='h5' fontWeight={700}>
+                      {img.title[locale]}
+                    </Typography>
+                  )}
+                  {img.description && (
+                    <Typography variant='body2' color='text.secondary'>
+                      {img.description[locale]}
+                    </Typography>
+                  )}
                 </Box>
               </Card>
             </Grid>

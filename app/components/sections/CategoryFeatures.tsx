@@ -5,7 +5,7 @@ import { useLanguage } from '../LanguageContext'
 import type { LocalizedString } from '@/app/types'
 
 interface FeatureItem {
-  icon: string
+  icon?: string
   title: LocalizedString
   description: LocalizedString
 }
@@ -43,14 +43,16 @@ export default function CategoryFeatures({ title, items }: CategoryFeaturesProps
                 }}
               >
                 <CardContent sx={{ textAlign: 'center', p: 4 }}>
-                  <Box
-                    sx={{
-                      fontSize: '4rem',
-                      mb: 2
-                    }}
-                  >
-                    {feature.icon}
-                  </Box>
+                  {feature.icon && (
+                    <Box
+                      sx={{
+                        fontSize: '4rem',
+                        mb: 2
+                      }}
+                    >
+                      {feature.icon}
+                    </Box>
+                  )}
 
                   <Typography
                     variant='h5'

@@ -118,9 +118,7 @@ export default function CategoryProductShowcase({
               {/* CTA */}
               <WhatsAppButton
                 category={category}
-                variant={
-                  category === 'tesla' ? (activeVariantData?.name as any) : undefined
-                }
+                variant={category === 'tesla' ? activeVariantData?.name : undefined}
                 placement='product-showcase'
                 size='large'
                 fullWidth

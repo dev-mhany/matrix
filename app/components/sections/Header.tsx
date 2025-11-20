@@ -22,7 +22,9 @@ import WhatsAppButton from '../shared/WhatsAppButton'
 import LanguageSwitcher from '../shared/LanguageSwitcher'
 import ThemeModeToggle from '../shared/ThemeModeToggle'
 import { useLanguage } from '../LanguageContext'
-import { content, categories } from '@/app/lib/content'
+import { content } from '@/app/lib/content'
+import { useFirestoreCollection } from '@/app/hooks/useFirestoreCollection'
+import { orderedCategoriesQuery } from '@/app/lib/firestore'
 import Link from 'next/link'
 
 export default function Header() {
@@ -31,6 +33,11 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [productsMenuAnchor, setProductsMenuAnchor] = useState<null | HTMLElement>(null)
+  const {
+    data: firestoreCategories,
+    loading: categoriesLoading,
+    error: categoriesError
+  } = useFirestoreCollection(orderedCategoriesQuery)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,6 +61,11 @@ export default function Header() {
   const handleProductsMenuClose = () => {
     setProductsMenuAnchor(null)
   }
+
+  const productLinks = firestoreCategories.map(category => ({
+    slug: category.slug,
+    name: category.name
+  }))
 
   return (
     <>
@@ -123,27 +135,35 @@ export default function Header() {
                   horizontal: 'left'
                 }}
               >
-                <MenuItem
-                  component={Link}
-                  href={categories.tesla.href}
-                  onClick={handleProductsMenuClose}
-                >
-                  {categories.tesla.name[locale]}
-                </MenuItem>
-                <MenuItem
-                  component={Link}
-                  href={categories.jetour.href}
-                  onClick={handleProductsMenuClose}
-                >
-                  {categories.jetour.name[locale]}
-                </MenuItem>
-                <MenuItem
-                  component={Link}
-                  href={categories.leopard.href}
-                  onClick={handleProductsMenuClose}
-                >
-                  {categories.leopard.name[locale]}
-                </MenuItem>
+                {categoriesLoading && (
+                  <MenuItem disabled>
+                    {locale === 'en' ? 'Loading models…' : 'جاري التحميل...'}
+                  </MenuItem>
+                )}
+                {categoriesError && (
+                  <MenuItem disabled sx={{ maxWidth: 240, whiteSpace: 'normal' }}>
+                    {locale === 'en'
+                      ? 'Unable to load categories.'
+                      : 'تعذر تحميل الفئات.'}
+                  </MenuItem>
+                )}
+                {!categoriesLoading &&
+                  !categoriesError &&
+                  productLinks.map(link => (
+                    <MenuItem
+                      key={link.slug}
+                      component={Link}
+                      href={`/${link.slug}`}
+                      onClick={handleProductsMenuClose}
+                    >
+                      {link.name[locale]}
+                    </MenuItem>
+                  ))}
+                {!categoriesLoading && !categoriesError && productLinks.length === 0 && (
+                  <MenuItem disabled>
+                    {locale === 'en' ? 'No categories yet.' : 'لا توجد فئات بعد.'}
+                  </MenuItem>
+                )}
               </Menu>
               {navItems.map(item => (
                 <Box
@@ -212,33 +232,42 @@ export default function Header() {
               primaryTypographyProps={{ fontWeight: 600, mb: 1 }}
             />
           </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton
-              component={Link}
-              href={categories.tesla.href}
-              onClick={() => setDrawerOpen(false)}
-            >
-              <ListItemText primary={categories.tesla.name[locale]} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton
-              component={Link}
-              href={categories.jetour.href}
-              onClick={() => setDrawerOpen(false)}
-            >
-              <ListItemText primary={categories.jetour.name[locale]} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton
-              component={Link}
-              href={categories.leopard.href}
-              onClick={() => setDrawerOpen(false)}
-            >
-              <ListItemText primary={categories.leopard.name[locale]} />
-            </ListItemButton>
-          </ListItem>
+          {categoriesLoading && (
+            <ListItem disablePadding>
+              <ListItemText primary={locale === 'en' ? 'Loading models…' : 'جاري التحميل...'} />
+            </ListItem>
+          )}
+          {categoriesError && (
+            <ListItem disablePadding>
+              <ListItemText
+                primary={
+                  locale === 'en'
+                    ? 'Unable to load categories.'
+                    : 'تعذر تحميل الفئات.'
+                }
+              />
+            </ListItem>
+          )}
+          {!categoriesLoading &&
+            !categoriesError &&
+            productLinks.map(link => (
+              <ListItem disablePadding key={link.slug}>
+                <ListItemButton
+                  component={Link}
+                  href={`/${link.slug}`}
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary={link.name[locale]} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          {!categoriesLoading && !categoriesError && productLinks.length === 0 && (
+            <ListItem disablePadding>
+              <ListItemText
+                primary={locale === 'en' ? 'No categories yet.' : 'لا توجد فئات بعد.'}
+              />
+            </ListItem>
+          )}
           {navItems.map(item => (
             <ListItem key={item.href} disablePadding>
               <ListItemButton

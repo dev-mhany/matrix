@@ -7,17 +7,17 @@ const tokens = {
   // Dark Mode Colors
   dark: {
     colors: {
-      primary: '#1EA7FD',
-      primaryLight: '#4FC3F7',
-      primaryDark: '#1976D2',
+      primary: '#00BCD4',
+      primaryLight: '#4DD8E6',
+      primaryDark: '#008BA3',
       secondary: '#FF6B6B',
       secondaryLight: '#FF8E8E',
       secondaryDark: '#E74C3C',
 
-      bgDark: '#0B0D10',
-      bgPaper: '#1A1D23',
-      bgLighter: '#2A2D33',
-      bgLightest: '#3A3D43',
+      bgDark: '#082229',
+      bgPaper: '#103543',
+      bgLighter: '#1f7a8c',
+      bgLightest: '#2fa0b9',
 
       textPrimary: '#FFFFFF',
       textSecondary: '#B0B8C4',
@@ -28,17 +28,17 @@ const tokens = {
       error: '#EF4444',
       info: '#3B82F6',
 
-      accent1: '#FFB347',
-      accent2: '#4A4D53'
+      accent1: '#caffb9',
+      accent2: '#91d18a'
     },
     gradients: {
-      primary: 'linear-gradient(135deg, #1EA7FD 0%, #4FC3F7 100%)',
+      primary: 'linear-gradient(135deg, #082229 0%, #1f7a8c 60%, #caffb9 100%)',
       text: 'linear-gradient(135deg, #FFFFFF 0%, #B0B8C4 100%)',
-      bg: 'linear-gradient(135deg, #0B0D10 0%, #1A1D23 100%)',
+      bg: 'linear-gradient(135deg, #082229 0%, #103543 100%)',
       radialPrimary:
-        'radial-gradient(circle at 20% 50%, rgba(30, 167, 253, 0.1) 0%, transparent 50%)',
+        'radial-gradient(circle at 20% 50%, rgba(31, 122, 140, 0.35) 0%, transparent 55%)',
       radialDark:
-        'radial-gradient(circle at 80% 50%, rgba(30, 167, 253, 0.15) 0%, transparent 50%)',
+        'radial-gradient(circle at 80% 50%, rgba(202, 255, 185, 0.25) 0%, transparent 55%)',
       overlay: 'linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%)'
     }
   },
@@ -46,38 +46,38 @@ const tokens = {
   // Light Mode Colors
   light: {
     colors: {
-      primary: '#1EA7FD',
-      primaryLight: '#4FC3F7',
-      primaryDark: '#1976D2',
+      primary: '#00BCD4',
+      primaryLight: '#4DD8E6',
+      primaryDark: '#008BA3',
       secondary: '#FF6B6B',
       secondaryLight: '#FF8E8E',
       secondaryDark: '#E74C3C',
 
-      bgDark: '#F5F7FA',
-      bgPaper: '#FFFFFF',
-      bgLighter: '#E5E7EB',
-      bgLightest: '#D1D5DB',
+      bgDark: '#f2fbff',
+      bgPaper: '#ffffff',
+      bgLighter: '#e3f2fb',
+      bgLightest: '#bfdbf7',
 
-      textPrimary: '#1F2937',
-      textSecondary: '#6B7280',
-      textDisabled: '#9CA3AF',
+      textPrimary: '#000000',
+      textSecondary: '#1f2937',
+      textDisabled: '#6b7280',
 
       success: '#10B981',
       warning: '#F59E0B',
       error: '#EF4444',
       info: '#3B82F6',
 
-      accent1: '#F97316',
-      accent2: '#64748B'
+      accent1: '#caffb9',
+      accent2: '#91d18a'
     },
     gradients: {
-      primary: 'linear-gradient(135deg, #1EA7FD 0%, #4FC3F7 100%)',
+      primary: 'linear-gradient(135deg, #1f7a8c 0%, #bfdbf7 55%, #caffb9 100%)',
       text: 'linear-gradient(135deg, #1F2937 0%, #6B7280 100%)',
-      bg: 'linear-gradient(135deg, #F5F7FA 0%, #FFFFFF 100%)',
+      bg: 'linear-gradient(135deg, #f2fbff 0%, #ffffff 100%)',
       radialPrimary:
-        'radial-gradient(circle at 20% 50%, rgba(30, 167, 253, 0.08) 0%, transparent 50%)',
+        'radial-gradient(circle at 20% 50%, rgba(31, 122, 140, 0.12) 0%, transparent 55%)',
       radialDark:
-        'radial-gradient(circle at 80% 50%, rgba(30, 167, 253, 0.12) 0%, transparent 50%)',
+        'radial-gradient(circle at 80% 50%, rgba(202, 255, 185, 0.18) 0%, transparent 55%)',
       overlay: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%)'
     }
   },
